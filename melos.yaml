@@ -1,4 +1,5 @@
 name: shoesly
+repository: https://github.com/Rk-Thakur/Shoesly.git
 
 packages:
   - packages/*
