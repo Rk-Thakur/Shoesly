@@ -1,0 +1,14 @@
+name: shoesly
+description: A Shoes App for the Priority Soft
+version: 1.0.0
+publish_to: 'none'
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  melos: ^6.0.0
+  very_good_analysis: ^5.1.0
+
+

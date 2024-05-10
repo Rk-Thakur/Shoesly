@@ -1,0 +1,21 @@
+name: shoesly_core
+description: Core functionality for the shoesly package
+version: 1.0.0
+publish_to: 'none'
+
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.4'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  equatable: ^2.0.5
+  dio: ^5.4.3+1
+  hive: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^5.0.0+1

@@ -1,0 +1,15 @@
+name: shoesly
+
+packages:
+  - packages/*
+scripts:
+    analyze: 
+        exec: dart analyze .
+
+    format:
+      description: Format Dart Code
+      exec: dart format .
+
+    clean:
+      description: Clean all packages
+      exec: flutter clean  
