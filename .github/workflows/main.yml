@@ -20,7 +20,7 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: melos bs    
+          
       - run: flutter build apk --build-name=shoesly --target=packages/shoesly/lib/main.dart
 
       - name: Push to Release
