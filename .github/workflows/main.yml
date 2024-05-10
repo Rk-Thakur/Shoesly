@@ -5,7 +5,7 @@ on:
   
   push:
     branches:
-      - "v1"
+      - "master"
 
 name: "Build and Release"
 jobs:
