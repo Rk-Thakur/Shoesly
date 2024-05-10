@@ -11,6 +11,8 @@ scripts:
       description: Format Dart Code
       exec: dart format .
 
+    
+
     clean:
       description: Clean all packages
       exec: flutter clean  
