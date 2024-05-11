@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shoesly_resources: ^1.0.0
-  shoesly_core: ^1.0.0
-  shoesly_components: ^1.0.0
+  shoesly_resources: any
+  shoesly_core: any 
+  shoesly_components: any
   cupertino_icons: ^1.0.6
   flutter_screenutil: ^5.9.0
   firebase_core: ^2.31.0
