@@ -1,4 +1,4 @@
-// Copyright (c) 2023. The LMS Authors. All rights reserved.
+// Copyright (c) 2024. The Shoesly Author. All rights reserved.
 
 import 'dart:io';
 
@@ -8,7 +8,7 @@ Future<void> main() async {
   final assetsPath = join(
     Platform.script.path.split('packages').first,
     'packages',
-    'lms_resources',
+    'shoesly_resources',
     'assets',
   );
   final assetsDir = Directory(assetsPath);

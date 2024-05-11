@@ -3,9 +3,17 @@ description: Components for the shoesly package
 version: 1.0.0
 publish_to: 'none'
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.4'
 
 dependencies:
   flutter:
     sdk: flutter
+  shoesly_resources: ^1.0.0  
+  flutter_svg: ^2.0.10+1
+  vector_graphics: ^1.1.11+1
 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^5.0.0+1
