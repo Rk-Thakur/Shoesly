@@ -28,3 +28,28 @@ class Picture extends StatelessWidget {
     );
   }
 }
+
+class PictureAssets extends StatelessWidget {
+  const PictureAssets({
+    required this.source,
+    this.width,
+    this.height,
+    this.fit = BoxFit.contain,
+    super.key,
+  });
+
+  final String source;
+  final double? width;
+  final double? height;
+  final BoxFit fit;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      source,
+      fit: fit,
+      height: height,
+      width: width,
+    );
+  }
+}

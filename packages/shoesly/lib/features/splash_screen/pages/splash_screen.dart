@@ -10,7 +10,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // checkOnBoard();
+    checkOnBoard();
     super.initState();
   }
 
@@ -44,11 +44,11 @@ class _SplashScreenState extends State<SplashScreen> {
               //   height: 20.h,
               //   width: 20.w,
               // ),
-              child: Picture(
-                source: Asset.images.book,
-                height: 20.h,
-                width: 20.w,
-              ),
+              // child: Picture(
+              //   source: Asset.images.book,
+              //   height: 20.h,
+              //   width: 20.w,
+              // ),
             ),
           ),
           Expanded(

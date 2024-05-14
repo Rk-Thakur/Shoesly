@@ -6,4 +6,6 @@ class ShoeslyRoutes {
   static const productDetailScreen = '/productDetailScreen';
   static const productFilterScreen = '/productFilterScreen';
   static const productReviewScreen = '/productReviewScreen';
+  static const orderSummary = '/orderSummary';
+  static const cartScreen = '/cartScreen';
 }
