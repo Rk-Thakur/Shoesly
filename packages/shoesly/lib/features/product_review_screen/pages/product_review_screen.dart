@@ -1,3 +1,4 @@
+import 'package:shoesly/features/product_detail_screen/presentation/pages/product_detail_screen.dart';
 import 'package:shoesly/main.g.dart';
 
 class ProductReviewScreen extends StatefulWidget {

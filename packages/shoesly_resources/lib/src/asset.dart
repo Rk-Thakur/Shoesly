@@ -3,7 +3,6 @@
 
 final class Asset {
   static const AssetImages images = AssetImages();
-  static const AssetAssetImage assetImage = AssetAssetImage();
 }
 
 final class AssetImages {
@@ -22,9 +21,4 @@ final class AssetImages {
   String get xlingshade => 'assets/images-bin/xlingshade.svg.vec';
   String get shoe1 => 'assets/images-bin/shoe1.svg.vec';
   String get nikebold => 'assets/images-bin/nikebold.svg.vec';
-}
-final class AssetAssetImage {
-  const AssetAssetImage();
-
-  String get first => 'assets/assetImage-bin/first.png.vec';
 }

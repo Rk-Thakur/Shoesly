@@ -15,13 +15,25 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> checkOnBoard() async {
-    Future.delayed(
-      const Duration(seconds: 3),
-      () => Utilities.pushNamedAndRemoveUntil(
-        context,
-        ShoeslyRoutes.discoverScreen,
-      ),
-    );
+    TokenService().getOnBoard()!.then((value) {
+      if (value == false) {
+        Future.delayed(
+          const Duration(seconds: 3),
+          () => Utilities.pushNamedAndRemoveUntil(
+            context,
+            ShoeslyRoutes.onBoardingScreen,
+          ),
+        );
+      } else {
+        Future.delayed(
+          const Duration(seconds: 3),
+          () => Utilities.pushNamedAndRemoveUntil(
+            context,
+            ShoeslyRoutes.loginScreen,
+          ),
+        );
+      }
+    });
   }
 
   @override
