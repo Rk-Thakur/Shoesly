@@ -91,87 +91,94 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                             mainAxisSpacing: 8.0,
                           ),
                           itemBuilder: (context, index) {
-                            return SizedBox(
-                              width: 150.w,
-                              height: 224.h,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    width: 150.w,
-                                    height: 160.h,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black45,
-                                      borderRadius:
-                                          BorderRadius.circular(20.sp),
+                            return GestureDetector(
+                              onTap: () {
+                                Utilities.pushNamed(
+                                    context, ShoeslyRoutes.productDetailScreen);
+                              },
+                              child: SizedBox(
+                                width: 150.w,
+                                height: 224.h,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 150.w,
+                                      height: 160.h,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black45,
+                                        borderRadius:
+                                            BorderRadius.circular(20.sp),
+                                      ),
+                                      child: const Icon(
+                                        Icons.abc,
+                                      ),
                                     ),
-                                    child: const Icon(
-                                      Icons.abc,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  SizedBox(
-                                    width: 150.w,
-                                    height: 64.h,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Jordan 1 Retro High Tie Dye',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12.sp,
-                                          ),
-                                        ),
-                                        5.verticalSpace,
-                                        SizedBox(
-                                          width: 110.w,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Icon(
-                                                Icons.star,
-                                                color: Colors.yellow,
-                                                size: 12.sp,
-                                              ),
-                                              Text(
-                                                "4.5",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 11.sp,
-                                                  color:
-                                                      const Color(0xff101010),
-                                                ),
-                                              ),
-                                              Text(
-                                                "(1045 Reviews)",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 11.sp,
-                                                  color:
-                                                      const Color(0xffB7B7B7),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 24.h,
-                                          child: Text(
-                                            "\$235,00",
+                                    const Spacer(),
+                                    SizedBox(
+                                      width: 150.w,
+                                      height: 64.h,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Jordan 1 Retro High Tie Dye',
                                             style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12.sp,
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          5.verticalSpace,
+                                          SizedBox(
+                                            width: 110.w,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Colors.yellow,
+                                                  size: 12.sp,
+                                                ),
+                                                Text(
+                                                  "4.5",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 11.sp,
+                                                    color:
+                                                        const Color(0xff101010),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "(1045 Reviews)",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 11.sp,
+                                                    color:
+                                                        const Color(0xffB7B7B7),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 24.h,
+                                            child: Text(
+                                              "\$235,00",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 16.sp,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           }))
