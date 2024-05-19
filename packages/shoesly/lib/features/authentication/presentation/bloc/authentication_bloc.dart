@@ -10,7 +10,8 @@ import 'package:shoesly_core/params/params.dart';
 
 part 'authentication_event.dart';
 
-class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
+class AuthenticationBloc
+    extends Bloc<AuthenticationEvent, AuthenticationState> {
   final GoogleLoginUseCase googleLoginUseCase;
 
   AuthenticationBloc({
@@ -19,8 +20,8 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     on<AuthenticationGoogleLoginEvent>(_googleLogin);
   }
 
-  FutureOr<void> _googleLogin(
-      AuthenticationGoogleLoginEvent event, Emitter<AuthenticationState> emit) async {
+  FutureOr<void> _googleLogin(AuthenticationGoogleLoginEvent event,
+      Emitter<AuthenticationState> emit) async {
     emit(state.copyWith(authStatus: AuthStatus.logging));
     final result = await googleLoginUseCase.call(NoParams());
 

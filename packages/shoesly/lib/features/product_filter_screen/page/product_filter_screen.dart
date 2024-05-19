@@ -14,30 +14,28 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
   int tapBrand = 0;
 
   final List<BrandList> _brandList = [
-    BrandList(name: 'NIKE', totalItems: 1001),
-    BrandList(name: 'Puma', totalItems: 601),
-    BrandList(name: 'Adidas', totalItems: 709),
-    BrandList(name: 'Puma', totalItems: 601),
-    BrandList(name: 'Reebok', totalItems: 555),
-    BrandList(name: 'NIKE', totalItems: 1001),
+    BrandList(name: 'NIKE', totalItems: 1001, image: Asset.images.nikebold),
+    BrandList(name: 'Puma', totalItems: 601, image: Asset.images.pumabold),
+    BrandList(name: 'Adidas', totalItems: 709, image: Asset.images.addidasbold),
+    BrandList(name: 'Reebok', totalItems: 555, image: Asset.images.xlingbold),
   ];
 
   final List<String> _sortByList = [
-    "Most Recent",
-    "Lowest Price",
-    "Highest Price",
+    'Most Recent',
+    'Lowest Price',
+    'Highest Price',
   ];
 
   final List<String> genderList = [
-    "Man",
-    "Woman",
-    "Unisex",
+    'Man',
+    'Woman',
+    'Unisex',
   ];
 
   final List<ColorModel> colorList = [
-    ColorModel(colorName: "Black", color: Colors.black),
-    ColorModel(colorName: "White", color: Colors.white),
-    ColorModel(colorName: "Red", color: Colors.red),
+    ColorModel(colorName: 'Black', color: Colors.black),
+    ColorModel(colorName: 'White', color: Colors.white),
+    ColorModel(colorName: 'Red', color: Colors.red),
   ];
   RangeValues _currentRangeValues = const RangeValues(200, 750);
 
@@ -45,7 +43,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Filter"),
+        title: const Text('Filter'),
         centerTitle: true,
       ),
       body: Padding(
@@ -90,14 +88,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                       width: 2.sp,
                     )),
                 child: Center(
-                  child: Text(
-                    "RESET(4)",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
-                  ),
+                  child: Text('RESET(4)',
+                      style: GoogleFonts.urbanist(
+                        textStyle: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      )),
                 ),
               ),
             ),
@@ -111,14 +109,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                   borderRadius: BorderRadius.circular(100.sp),
                 ),
                 child: Center(
-                  child: Text(
-                    "APPLY",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: Text('APPLY',
+                      style: GoogleFonts.urbanist(
+                        textStyle: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ),
             ),
@@ -136,14 +134,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Color",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Color',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101010),
+                ),
+              )),
           const Spacer(),
           SizedBox(
             width: double.infinity,
@@ -169,7 +167,9 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapColor ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapColor
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Padding(
@@ -187,14 +187,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                               ),
                             ),
                             4.horizontalSpace,
-                            Text(
-                              color.colorName,
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              ),
-                            ),
+                            Text(color.colorName,
+                                style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black,
+                                  ),
+                                )),
                           ],
                         ),
                       ),
@@ -215,14 +215,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Gender",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Gender',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101010),
+                ),
+              )),
           const Spacer(),
           SizedBox(
             width: double.infinity,
@@ -248,18 +248,22 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapGender ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapGender ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapGender
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
-                          child: Text(
-                        sort,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: index == tapGender ? Colors.white : Colors.black,
-                        ),
-                      )),
+                          child: Text(sort,
+                              style: GoogleFonts.urbanist(
+                                textStyle: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: index == tapGender
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ))),
                     ),
                   );
                 }),
@@ -277,14 +281,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Sort By",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Sort By',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101010),
+                ),
+              )),
           const Spacer(),
           SizedBox(
             width: double.infinity,
@@ -310,17 +314,21 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapIndex ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapIndex ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapIndex
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
                           child: Text(
                         sort,
-                        style: TextStyle(
+                        style: GoogleFonts.urbanist(
+                            textStyle: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color: index == tapIndex ? Colors.white : Colors.black,
-                        ),
+                          color:
+                              index == tapIndex ? Colors.white : Colors.black,
+                        )),
                       )),
                     ),
                   );
@@ -339,14 +347,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Price Range",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Price Range',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101010),
+                ),
+              )),
           const Spacer(),
           SizedBox(
               width: double.infinity,
@@ -379,14 +387,14 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Brands",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Brands',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff101010),
+                ),
+              )),
           const Spacer(),
           SizedBox(
             height: 100.h,
@@ -416,11 +424,13 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                             ),
                             child: Stack(
                               children: [
-                                const Center(
-                                  child: Icon(
-                                    Icons.abc,
-                                  ),
-                                ),
+                                Center(
+                                    child: Picture(
+                                  source: brand.image,
+                                  width: 12.w,
+                                  height: 12.h,
+                                  fit: BoxFit.cover,
+                                )),
                                 index == tapBrand
                                     ? Positioned(
                                         top: 34.h,
@@ -446,22 +456,22 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                       const Spacer(),
                       Column(
                         children: [
-                          Text(
-                            brand.name,
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w700,
-                              color: const Color(0xff101010),
-                            ),
-                          ),
-                          Text(
-                            "${brand.totalItems} Items",
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: const Color(0xffB7B7B7),
-                            ),
-                          ),
+                          Text(brand.name,
+                              style: GoogleFonts.urbanist(
+                                textStyle: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: const Color(0xff101010),
+                                ),
+                              )),
+                          Text('${brand.totalItems} Items',
+                              style: GoogleFonts.urbanist(
+                                textStyle: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xffB7B7B7),
+                                ),
+                              )),
                         ],
                       )
                     ],
@@ -482,9 +492,11 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
 class BrandList {
   String name;
   int totalItems;
+  String image;
   BrandList({
     required this.name,
     required this.totalItems,
+    required this.image,
   });
 }
 

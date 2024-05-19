@@ -1,7 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:shoesly/features/product_detail_screen/presentation/pages/params/product_detail_params.dart';
 import 'package:shoesly/main.g.dart';
 
 class ProductDetailScreen extends StatefulWidget {
@@ -20,29 +16,48 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int tappedSized = 0;
   int _pagaeIndex = 0;
 
+  int _selectedStar = 0;
+  int _grandtotal = 0;
+
   late PageController _pageController;
 
   final TextEditingController quantityController = TextEditingController();
+  final TextEditingController eventController = TextEditingController();
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchReviewList(context);
+    });
     quantityController.text = '1';
     _pageController = PageController(initialPage: 0);
+
     super.initState();
   }
 
+  fetchReviewList(BuildContext context) {
+    BlocProvider.of<ProductDetailScreenBloc>(context).add(
+      GetLatest3ReviewByProudctIdEvent(
+        productId: widget.productDetailParams.productId,
+      ),
+    );
+  }
+
   void _increment() {
-    int currentValue = int.parse(quantityController.text);
-    quantityController.text = (currentValue + 1).toString();
-    setState(() {});
+    setState(() {
+      int currentValue = int.parse(quantityController.text);
+      quantityController.text = (currentValue + 1).toString();
+      _grandtotal = currentValue * widget.productDetailParams.price;
+    });
   }
 
   void _decrement() {
-    int currentValue = int.parse(quantityController.text);
-    if (currentValue > 1) {
-      quantityController.text = (currentValue - 1).toString();
-
-      setState(() {});
-    }
+    setState(() {
+      int currentValue = int.parse(quantityController.text);
+      if (currentValue > 1) {
+        quantityController.text = (currentValue - 1).toString();
+        _grandtotal = currentValue * widget.productDetailParams.price;
+      }
+    });
   }
 
   @override
@@ -51,18 +66,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     quantityController.dispose();
     super.dispose();
   }
-
-  List<ReviewModel> reviewList = [
-    ReviewModel(
-        name: 'Nolan Carder',
-        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
-    ReviewModel(
-        name: 'Maria Saris',
-        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
-    ReviewModel(
-        name: 'Gretchen Septimus',
-        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
-  ];
 
   List<Color> color = [
     const Color(0xffE7E7E7),
@@ -73,13 +76,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final reviewList =
+        context.watch<ProductDetailScreenBloc>().state.commentList;
     return Scaffold(
       appBar: AppBar(
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15.sp),
-            child: const Icon(
-              Icons.settings,
+            child: IconButton(
+              onPressed: () async {
+                bottomSheet(context);
+              },
+              icon: const Icon(
+                Icons.comment,
+              ),
             ),
           ),
         ],
@@ -89,22 +99,30 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           horizontal: 22.sp,
           vertical: 30.sp,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              //image
-              _productImage(imageList: widget.productDetailParams.imageList),
-              30.verticalSpace,
-              _productName(),
-              30.verticalSpace,
-              _productSize(size: widget.productDetailParams.size),
-              30.verticalSpace,
-              _productDescription(
-                description: widget.productDetailParams.productDescription,
-              ),
-              30.verticalSpace,
-              _productReview()
-            ],
+        child: RefreshIndicator(
+          onRefresh: () async {
+            await fetchReviewList(context);
+          },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                //image
+                _productImage(imageList: widget.productDetailParams.imageList),
+                30.verticalSpace,
+                _productName(
+                  name: widget.productDetailParams.productName,
+                  reviews: reviewList.length,
+                ),
+                30.verticalSpace,
+                _productSize(size: widget.productDetailParams.size),
+                30.verticalSpace,
+                _productDescription(
+                  description: widget.productDetailParams.productDescription,
+                ),
+                30.verticalSpace,
+                _productReview()
+              ],
+            ),
           ),
         ),
       ),
@@ -125,7 +143,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Price",
+                    'Price',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -134,7 +152,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   // const Spacer(),
                   Text(
-                    "\$235.00",
+                    '\$${widget.productDetailParams.price}',
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
@@ -162,7 +180,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "ADD TO CART",
+                      'ADD TO CART',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -177,6 +195,143 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> bottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return BlocListener<ProductDetailScreenBloc,
+              ProductDetailScreenState>(
+            listener: (context, state) {
+              if (state.commentStatus == CommentStatus.commented) {
+                eventController.clear();
+                _selectedStar = 0;
+                Navigator.of(context).pop();
+              }
+            },
+            child: StatefulBuilder(
+              builder: (context, setState) {
+                return Padding(
+                  padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                  ),
+                  child: IntrinsicHeight(
+                    child: SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        child: Column(
+                          children: [
+                            15.verticalSpace,
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                "It's comment time.",
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            10.verticalSpace,
+                            TextFormField(
+                              controller: eventController,
+                              maxLength: 100,
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              decoration: InputDecoration(
+                                label: const Text('Comment'),
+                                hintText: 'Comment',
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 12,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: const BorderSide(
+                                    color: Colors.red,
+                                    width: 0,
+                                    style: BorderStyle.solid,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            10.verticalSpace,
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(5, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _selectedStar = index + 1;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.star,
+                                    size: 40.0,
+                                    color: index < _selectedStar
+                                        ? Colors.yellow
+                                        : Colors.grey,
+                                  ),
+                                );
+                              }),
+                            ),
+                            10.verticalSpace,
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  if (eventController.text.isNotEmpty) {
+                                    final CommentParams commentParams =
+                                        CommentParams(
+                                      review: eventController.text.trim(),
+                                      star: _selectedStar,
+                                      productId:
+                                          widget.productDetailParams.productId,
+                                    );
+
+                                    context.read<ProductDetailScreenBloc>().add(
+                                          CommentProductEvent(
+                                            commentParams: commentParams,
+                                          ),
+                                        );
+                                  }
+                                },
+                                child: Container(
+                                  height: 54.h,
+                                  width: 160.w,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(100.sp),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'ADD TO CART',
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        });
   }
 
   Widget addToCartBottomSheet(BuildContext context) {
@@ -205,7 +360,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Add to Cart",
+                            'Add to Cart',
                             style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w700,
@@ -240,9 +395,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             GestureDetector(
-                              onTap: (int.tryParse(quantityController.text) ?? 0) < 1
-                                  ? null
-                                  : _decrement,
+                              onTap:
+                                  (int.tryParse(quantityController.text) ?? 0) <
+                                          1
+                                      ? null
+                                      : _decrement,
                               child: Container(
                                 width: 24.w,
                                 height: 24.h,
@@ -298,48 +455,71 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Grand Total",
+                                  'Grand Total',
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w400,
                                     color: const Color(0xffB7B7B7),
                                   ),
                                 ),
-                                Text(
-                                  "\$725.00",
-                                  style: TextStyle(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: .4,
-                                  ),
-                                ),
+                                StatefulBuilder(builder: (BuildContext context,
+                                    StateSetter setState) {
+                                  return Text(
+                                    '\$${widget.productDetailParams.price * int.parse(
+                                          quantityController.text,
+                                        )}',
+                                    style: TextStyle(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: .4,
+                                    ),
+                                  );
+                                }),
                               ],
                             ),
                           )),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
+                          BlocListener<CartScreenBloc, CartScreenState>(
+                            listener: (context, state) {
+                              if (state.cartStatus == CartStatus.added) {
                                 Utilities.pop(context);
                                 showModalBottomSheet(
                                     context: context,
                                     isDismissible: true,
                                     isScrollControlled: true,
-                                    builder: (context) => addedToCartBottomSheet(context));
-                              },
-                              child: Container(
-                                height: 54.h,
-                                width: 160.w,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(100.sp),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "ADD TO CART",
-                                    style: TextStyle(
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
+                                    builder: (context) =>
+                                        addedToCartBottomSheet(context));
+                              }
+                            },
+                            child: Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  final CartEntity cartEntity = CartEntity(
+                                      productImage: widget
+                                          .productDetailParams.imageList[0],
+                                      productName: widget
+                                          .productDetailParams.productName,
+                                      productPrice:
+                                          widget.productDetailParams.price,
+                                      quantity:
+                                          int.parse(quantityController.text));
+                                  BlocProvider.of<CartScreenBloc>(context).add(
+                                      AddCartEvent(cartEntity: cartEntity));
+                                },
+                                child: Container(
+                                  height: 54.h,
+                                  width: 160.w,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(100.sp),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'ADD TO CART',
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -399,11 +579,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 20.verticalSpace,
                 SizedBox(
                   width: double.infinity,
-                  height: 64.h,
+                  height: 70.h,
                   child: Column(
                     children: [
                       Text(
-                        "Added to Cart",
+                        'Added to Cart',
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w700,
@@ -411,7 +591,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         ),
                       ),
                       Text(
-                        "1 Item Total",
+                        '1 Item Total',
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.w400,
@@ -444,7 +624,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 )),
                             child: Center(
                               child: Text(
-                                "BACK EXPLORE",
+                                'BACK EXPLORE',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w700,
@@ -474,7 +654,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             ),
                             child: Center(
                               child: Text(
-                                "TO CART",
+                                'TO CART',
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.w700,
@@ -499,78 +679,100 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget _productReview() {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Review (1045)',
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: const Color(
-                0xff101010,
-              ),
-            ),
-          ),
-          10.verticalSpace,
-          SizedBox(
-            width: double.infinity,
-            height: 425.h,
-            child: Column(
+      child: BlocBuilder<ProductDetailScreenBloc, ProductDetailScreenState>(
+        builder: (context, state) {
+          if (state.commentListStatus == CommentListStatus.fetched) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 345.h,
-                  child: ListView.separated(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        final review = reviewList[index];
-                        return ReviewWidget(name: review.name, description: review.description);
-                      },
-                      separatorBuilder: (context, index) {
-                        return 30.verticalSpace;
-                      },
-                      itemCount: reviewList.length),
-                ),
-                30.verticalSpace,
-                GestureDetector(
-                  onTap: () {
-                    Utilities.pushNamed(
-                      context,
-                      ShoeslyRoutes.productReviewScreen,
-                    );
-                  },
-                  child: Container(
-                    height: 50.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: const Color(0xffE7E7E7),
-                        width: 1.sp,
-                      ),
-                      borderRadius: BorderRadius.circular(
-                        100.sp,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "SEE ALL REVIEW",
-                        style: TextStyle(
-                          color: const Color(0xff101010),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: .3,
-                        ),
-                      ),
+                Text(
+                  'Review (${state.commentList.length})',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(
+                      0xff101010,
                     ),
                   ),
                 ),
+                10.verticalSpace,
+                SizedBox(
+                  width: double.infinity,
+                  height: 425.h,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: double.infinity,
+                        height: 345.h,
+                        child: ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              final review = state.commentList[index];
+                              return ReviewWidget(
+                                commentEntity: review,
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return 30.verticalSpace;
+                            },
+                            itemCount: state.commentList.length),
+                      ),
+                      30.verticalSpace,
+                      GestureDetector(
+                        onTap: () {
+                          Utilities.pushNamed(
+                            context,
+                            ShoeslyRoutes.productReviewScreen,
+                            arguments: ReviewParams(
+                              reviewTotal: state.commentList.length,
+                              productId: widget.productDetailParams.productId,
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 50.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: const Color(0xffE7E7E7),
+                              width: 1.sp,
+                            ),
+                            borderRadius: BorderRadius.circular(
+                              100.sp,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'SEE ALL REVIEW',
+                              style: TextStyle(
+                                color: const Color(0xff101010),
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: .3,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
-            ),
-          ),
-        ],
+            );
+          } else if (state.commentListStatus == CommentListStatus.failure) {
+            return Center(
+              child: Text(state.message),
+            );
+          } else if (state.commentListStatus == CommentListStatus.loading) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }
@@ -599,7 +801,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: Text(
                 description,
                 style: TextStyle(
-                    fontSize: 12.sp, fontWeight: FontWeight.w400, color: const Color(0xff6F6F6F)),
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xff6F6F6F)),
               ),
             ),
           )
@@ -646,16 +850,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       height: 50.h,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: index == tappedSized ? Colors.black : Colors.white,
+                          color: index == tappedSized
+                              ? Colors.black
+                              : Colors.white,
                           border: Border.all(
                             width: 2.sp,
-                            color: index == tappedSized ? Colors.black : const Color(0xffE7E7E7),
+                            color: index == tappedSized
+                                ? Colors.black
+                                : const Color(0xffE7E7E7),
                           )),
                       child: Center(
                         child: Text(
                           sizes.toString(),
                           style: TextStyle(
-                            color: index == tappedSized ? Colors.white : const Color(0xff6F6F6F),
+                            color: index == tappedSized
+                                ? Colors.white
+                                : const Color(0xff6F6F6F),
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w700,
                             letterSpacing: .1,
@@ -676,7 +886,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 
-  Widget _productName() {
+  double calculateReviewAverage(List<int> numbers) {
+    int sum = 0;
+    for (int number in numbers) {
+      sum += number;
+    }
+    return sum / numbers.length;
+  }
+
+  Widget _productName({required String name, required int reviews}) {
     return Align(
       alignment: Alignment.topLeft,
       child: SizedBox(
@@ -687,7 +905,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Jordan 1 Retro High Tie Dye",
+              name,
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w700,
@@ -707,20 +925,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                   ),
                   12.horizontalSpace,
-                  const Expanded(
+                  Expanded(
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "4.5",
+                      const Text(
+                        '4.5',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
-                        '(1045 Reviews)',
-                        style: TextStyle(
+                        '($reviews Reviews)',
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -830,7 +1048,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             color: colorType,
                           ),
                           child: index == tappedIndex
-                              ? Icon(Icons.check, size: 16.sp, color: Colors.white)
+                              ? Icon(Icons.check,
+                                  size: 16.sp, color: Colors.white)
                               : null,
                         ),
                       );
@@ -849,11 +1068,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 class ReviewWidget extends StatelessWidget {
   const ReviewWidget({
     super.key,
-    required this.name,
-    required this.description,
+    required this.commentEntity,
   });
-  final String name;
-  final String description;
+
+  final CommentEntity commentEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -873,10 +1091,14 @@ class ReviewWidget extends StatelessWidget {
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.person,
-                    ),
+                  child: CachedNetworkImage(
+                    imageUrl: commentEntity.userProfile,
+                    fit: BoxFit.contain,
+                    placeholder: (context, url) {
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      );
+                    },
                   ),
                 ),
                 10.horizontalSpace,
@@ -888,27 +1110,27 @@ class ReviewWidget extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          name,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          "Today",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
+                        Text(commentEntity.userName,
+                            style: GoogleFonts.urbanist(
+                              textStyle: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )),
+                        Text(commentEntity.reviewedTime.timeAgo,
+                            style: GoogleFonts.urbanist(
+                              textStyle: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            )),
                       ],
                     ),
                     SizedBox(
                       width: 80.w,
                       height: 14.h,
-                      child: const StarRating(
-                        rating: 5,
+                      child: StarRating(
+                        rating: commentEntity.stars,
                       ),
                     ),
                   ],
@@ -931,13 +1153,13 @@ class ReviewWidget extends StatelessWidget {
               SizedBox(
                 width: 280.w,
                 height: 44.h,
-                child: Text(
-                  description,
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                child: Text(commentEntity.productReview,
+                    style: GoogleFonts.urbanist(
+                      textStyle: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    )),
               ),
             ],
           )

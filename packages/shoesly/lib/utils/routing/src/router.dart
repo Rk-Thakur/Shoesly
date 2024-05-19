@@ -1,10 +1,12 @@
 import 'package:shoesly/features/authentication/presentation/pages/login_screen.dart';
+import 'package:shoesly/features/cart_screen/presentation/pages/cart_screen.dart';
 import 'package:shoesly/features/discover_screen/presentation/pages/discover_screen.dart';
 
 import 'package:shoesly/features/form_screen/presentation/pages/form_screen.dart';
-import 'package:shoesly/features/product_detail_screen/presentation/pages/params/product_detail_params.dart';
+import 'package:shoesly/features/order_summary/presentation/pages/order_summary.dart';
 import 'package:shoesly/features/product_detail_screen/presentation/pages/product_detail_screen.dart';
 import 'package:shoesly/features/product_review_screen/pages/product_review_screen.dart';
+import 'package:shoesly/features/splash_screen/presentation/pages/splash_screen.dart';
 import 'package:shoesly/main.g.dart';
 
 class ShoeslyRouter {
@@ -47,17 +49,29 @@ class ShoeslyRouter {
           return const ProductFilterScreen();
         });
       case ShoeslyRoutes.productReviewScreen:
-        return MaterialPageRoute(builder: (_) {
-          return const ProductReviewScreen();
-        });
+        if (args is ReviewParams) {
+          return MaterialPageRoute(builder: (_) {
+            return ProductReviewScreen(
+              reviewParams: args,
+            );
+          });
+        }
+        return notFoundRoute();
+
       case ShoeslyRoutes.cartScreen:
         return MaterialPageRoute(builder: (_) {
           return const CartScreen();
         });
       case ShoeslyRoutes.orderSummary:
-        return MaterialPageRoute(builder: (_) {
-          return const OrderSummary();
-        });
+        if (args is OrderSummaryParams) {
+          return MaterialPageRoute(builder: (_) {
+            return OrderSummary(
+              orderSummaryParams: args,
+            );
+          });
+        }
+        return notFoundRoute();
+
       default:
         return notFoundRoute();
     }

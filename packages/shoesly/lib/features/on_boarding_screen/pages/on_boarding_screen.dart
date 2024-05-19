@@ -1,5 +1,4 @@
 import 'package:shoesly/main.g.dart';
-import 'package:shoesly_core/services/token_services.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -15,7 +14,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
-
+    changeStatus();
     super.initState();
   }
 
@@ -75,7 +74,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           children: [
                             Text(
                               demoData[index].title,
-                              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headlineLarge!
+                                  .copyWith(
                                     letterSpacing: .3,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -83,7 +85,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             const Spacer(),
                             Text(
                               demoData[index].description,
-                              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
                                     letterSpacing: .3,
                                     fontWeight: FontWeight.w200,
                                   ),
@@ -134,7 +139,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       changeStatus();
                     },
                     child: Text(
-                      _pagaeIndex != demoData.length - 1 ? 'Next' : 'Getting Started',
+                      _pagaeIndex != demoData.length - 1
+                          ? 'Next'
+                          : 'Getting Started',
                     ),
                   ),
                 ],

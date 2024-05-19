@@ -19,4 +19,11 @@ class DiscoverRepoImpl extends DiscoverRepository {
   Future<Either<Failure, List<ProductEntity>>> getProductList() {
     return _discoverRemoteDataSources.getProductList(noParams: NoParams());
   }
+
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getBrandProductList(
+      {required BrandNameParams brandNameParams}) {
+    return _discoverRemoteDataSources.getBrandProductList(
+        brandNameParams: brandNameParams);
+  }
 }

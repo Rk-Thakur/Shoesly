@@ -1,8 +1,6 @@
 // Copyright (c) 2024. The Shoesly Authors. All rights reserved.
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoesly/main.g.dart';
-import 'package:shoesly/utils/shoesly_bloc_providers.dart';
 
 class ShoeslyApp extends StatelessWidget {
   const ShoeslyApp({super.key});
@@ -19,12 +17,22 @@ class ShoeslyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             onGenerateTitle: (context) => '',
-            title: 'Learning Management System',
+            title: 'Shoesly',
             theme: ThemeData(
-              useMaterial3: true,
-              // colorScheme: LearningTheme.lightColorScheme,
-              // textTheme: LearningFont.lightTextTheme,
-            ),
+                useMaterial3: true,
+                floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                  backgroundColor: Colors.black,
+                ),
+                textTheme: GoogleFonts.urbanistTextTheme(
+                  Theme.of(context).textTheme,
+                ),
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.black54,
+                ),
+                sliderTheme: const SliderThemeData(
+                  thumbColor: Colors.black,
+                  activeTrackColor: Colors.black,
+                )),
             onGenerateRoute: ShoeslyRouter.onGenerateRoute,
           );
         },

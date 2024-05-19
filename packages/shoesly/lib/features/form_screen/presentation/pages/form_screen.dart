@@ -1,12 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:io';
 import 'dart:math';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:shoesly/features/form_screen/presentation/bloc/form_screen_bloc.dart';
-import 'package:shoesly/features/form_screen/presentation/bloc/form_screen_state.dart';
 import 'package:shoesly/main.g.dart';
-import 'package:shoesly_core/params/params.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
@@ -27,8 +24,8 @@ class _FormScreenState extends State<FormScreen> {
   final priceController = TextEditingController();
   final brandController = TextEditingController();
 
-  List<String> brandList = ['Nike', 'Reebok', 'Addidas'];
-
+  List<String> brandList = ['Nike', 'Reebok', 'Addidas', 'Jordan', 'Vans'];
+  String selectedValue = 'Nike';
   final _globalKey = GlobalKey<FormState>();
   String _errorMessage = '';
 
@@ -46,7 +43,7 @@ class _FormScreenState extends State<FormScreen> {
         });
       }
     } catch (e) {
-      print("Image picking error: $e");
+      print('Image picking error: $e');
       setState(() {
         _errorMessage = 'Error Picking Images';
       });
@@ -78,7 +75,7 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     final formState = context.watch<FormScreenBloc>().state;
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Product")),
+      appBar: AppBar(title: const Text('Add Product')),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 22.sp,
@@ -113,20 +110,26 @@ class _FormScreenState extends State<FormScreen> {
                             ? Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: GridView.builder(
-                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3, // Adjust columns as needed
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount:
+                                        3, // Adjust columns as needed
                                   ),
                                   itemCount: _imageFileList.length,
-                                  itemBuilder: (BuildContext context, int index) {
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
                                     return GestureDetector(
                                         onTap: () => _removeImage(index),
-                                        child: Image.file(File(_imageFileList[index].path)));
+                                        child: Image.file(
+                                            File(_imageFileList[index].path)));
                                   },
                                 ),
                               )
                             : Center(
                                 child: Text(
-                                  _errorMessage.isNotEmpty ? _errorMessage : 'No Image Selected!',
+                                  _errorMessage.isNotEmpty
+                                      ? _errorMessage
+                                      : 'No Image Selected!',
                                 ),
                               ),
                       ),
@@ -134,7 +137,9 @@ class _FormScreenState extends State<FormScreen> {
                       TextFormField(
                         controller: nameController,
                         validator: (value) {
-                          return value!.isEmpty ? 'Enter the Product Name' : null;
+                          return value!.isEmpty
+                              ? 'Enter the Product Name'
+                              : null;
                         },
                         decoration: InputDecoration(
                             hintText: 'Product Name',
@@ -147,37 +152,34 @@ class _FormScreenState extends State<FormScreen> {
                                 ))),
                       ),
                       10.verticalSpace,
-                      // DropdownButtonFormField<String>(
-                      //     decoration: InputDecoration(
-                      //         hintText: 'Brands',
-                      //         border: OutlineInputBorder(
-                      //             borderRadius: BorderRadius.circular(10.0),
-                      //             borderSide: const BorderSide(
-                      //               color: Colors.black,
-                      //               width: 0,
-                      //               style: BorderStyle.solid,
-                      //             ))),
-                      //     validator: (value) {
-                      //       return value!.isEmpty ? 'Select Brands' : null;
-                      //     },
-                      //     isExpanded: true,
-                      //     value: _selectedBrand,
-                      //     items: [
-                      //       ...List.generate(
-                      //         brandList.length,
-                      //         (index) => DropdownMenuItem(
-                      //           value: brandList[index],
-                      //           child: Text(
-                      //             brandList[index],
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //     onChanged: (newValue) {
-                      //       setState(() {
-                      //         _selectedBrand = newValue!;
-                      //       });
-                      //     }),
+                      DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                              hintText: 'Brands',
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: const BorderSide(
+                                    color: Colors.black,
+                                    width: 0,
+                                    style: BorderStyle.solid,
+                                  ))),
+                          validator: (value) {
+                            return value!.isEmpty ? 'Select Brands' : null;
+                          },
+                          isExpanded: true,
+                          value: selectedValue,
+                          items: brandList.map(
+                            (e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedValue = newValue!;
+                            });
+                          }),
                       10.verticalSpace,
                       TextFormField(
                         controller: _textEditingController,
@@ -212,7 +214,8 @@ class _FormScreenState extends State<FormScreen> {
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: selectedNumbers.contains(number)
-                                        ? const Color.fromARGB(255, 237, 234, 234)
+                                        ? const Color.fromARGB(
+                                            255, 237, 234, 234)
                                         : Colors.white,
                                     border: Border.all(
                                       width: 2.sp,
@@ -221,15 +224,14 @@ class _FormScreenState extends State<FormScreen> {
                                           : const Color(0xffE7E7E7),
                                     )),
                                 child: Center(
-                                  child: Text(
-                                    '$number',
-                                    style: TextStyle(
-                                      // color: index == tappedSized ? Colors.white : const Color(0xff6F6F6F),
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: .1,
-                                    ),
-                                  ),
+                                  child: Text('$number',
+                                      style: GoogleFonts.urbanist(
+                                        textStyle: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: .1,
+                                        ),
+                                      )),
                                 ),
                               ),
                             );
@@ -245,7 +247,9 @@ class _FormScreenState extends State<FormScreen> {
                         controller: descriptionController,
                         maxLines: 5,
                         validator: (value) {
-                          return value!.isEmpty ? 'Add the description of the product..' : null;
+                          return value!.isEmpty
+                              ? 'Add the description of the product..'
+                              : null;
                         },
                         decoration: InputDecoration(
                             hintText: 'Description',
@@ -277,13 +281,15 @@ class _FormScreenState extends State<FormScreen> {
                       10.verticalSpace,
                       GestureDetector(
                         onTap: () {
-                          if (_globalKey.currentState!.validate() && _imageFileList.isNotEmpty) {
+                          if (_globalKey.currentState!.validate() &&
+                              _imageFileList.isNotEmpty) {
                             final FormParams formParams = FormParams(
                                 productId: Random().nextInt(99999),
                                 images: _imageFileList,
                                 productName: nameController.text,
                                 sizes: selectedNumbers,
                                 description: descriptionController.text,
+                                brand: selectedValue,
                                 price: int.parse(priceController.text));
 
                             context
@@ -299,14 +305,14 @@ class _FormScreenState extends State<FormScreen> {
                             borderRadius: BorderRadius.circular(100.sp),
                           ),
                           child: Center(
-                            child: Text(
-                              "APPLY",
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
+                            child: Text('APPLY',
+                                style: GoogleFonts.urbanist(
+                                  textStyle: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                )),
                           ),
                         ),
                       ),
@@ -325,7 +331,10 @@ class _FormScreenState extends State<FormScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImages,
-        child: const Icon(Icons.add_a_photo),
+        child: const Icon(
+          Icons.add_a_photo,
+          color: Colors.white,
+        ),
       ),
     );
   }

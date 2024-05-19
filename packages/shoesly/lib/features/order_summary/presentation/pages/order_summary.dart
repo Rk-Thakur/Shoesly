@@ -1,25 +1,30 @@
 import 'package:shoesly/main.g.dart';
 
 class OrderSummary extends StatefulWidget {
-  const OrderSummary({super.key});
+  const OrderSummary({
+    super.key,
+    required this.orderSummaryParams,
+  });
 
+  final OrderSummaryParams orderSummaryParams;
   @override
   State<OrderSummary> createState() => _OrderSummaryState();
 }
 
 class _OrderSummaryState extends State<OrderSummary> {
+  int shippingCost = 20;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Order Summary",
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        title: Text('Order Summary',
+            style: GoogleFonts.urbanist(
+              textStyle: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            )),
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(
@@ -37,23 +42,24 @@ class _OrderSummaryState extends State<OrderSummary> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Grand Total",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xffB7B7B7),
-                    ),
-                  ),
+                  Text('Grand Total',
+                      style: GoogleFonts.urbanist(
+                        textStyle: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w400,
+                          color: const Color(0xffB7B7B7),
+                        ),
+                      )),
                   // const Spacer(),
                   Text(
-                    "\$725.00",
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: .4,
-                    ),
-                  ),
+                      '\$ ${widget.orderSummaryParams.grandTotal + shippingCost}',
+                      style: GoogleFonts.urbanist(
+                        textStyle: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: .4,
+                        ),
+                      )),
                 ],
               ),
             )),
@@ -68,14 +74,14 @@ class _OrderSummaryState extends State<OrderSummary> {
                     borderRadius: BorderRadius.circular(100.sp),
                   ),
                   child: Center(
-                    child: Text(
-                      "PAYMENT",
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: Text('PAYMENT',
+                        style: GoogleFonts.urbanist(
+                          textStyle: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                          ),
+                        )),
                   ),
                 ),
               ),
@@ -114,18 +120,18 @@ class _OrderSummaryState extends State<OrderSummary> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Payment Detail",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Payment Detail',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff101010),
+                ),
+              )),
           20.verticalSpace,
-          const PaymentListTile(
+          PaymentListTile(
             totalTitle: 'Sub Total',
-            price: '\$705.00',
+            price: '\$ ${widget.orderSummaryParams.grandTotal}',
           ),
           20.verticalSpace,
           const PaymentListTile(
@@ -150,44 +156,29 @@ class _OrderSummaryState extends State<OrderSummary> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Order Details",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Order Details',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff101010),
+                ),
+              )),
+          10.verticalSpace,
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  20.verticalSpace,
-                  const OrderProductDetail(
-                    title: 'Jordan 1 Retro High Tie Dye',
-                    subTitle: 'Nike . Red Grey . 40 . Qty 1',
-                    price: '\$235.00',
-                  ),
-                  20.verticalSpace,
-                  const OrderProductDetail(
-                    title: 'Jordan 1 Retro High Tie Dye',
-                    subTitle: 'Nike . Red Grey . 40 . Qty 1',
-                    price: '\$235.00',
-                  ),
-                  20.verticalSpace,
-                  const OrderProductDetail(
-                    title: 'Jordan 1 Retro High Tie Dye',
-                    subTitle: 'Nike . Red Grey . 40 . Qty 1',
-                    price: '\$235.00',
-                  ),
-                  20.verticalSpace,
-                  const OrderProductDetail(
-                    title: 'Jordan 1 Retro High Tie Dye',
-                    subTitle: 'Nike . Red Grey . 40 . Qty 1',
-                    price: '\$235.00',
-                  ),
-                ],
-              ),
+            child: ListView.separated(
+              itemBuilder: (context, index) {
+                final order = widget.orderSummaryParams.cartList[index];
+                return OrderProductDetail(
+                  title: order.productName,
+                  subTitle: 'Nike . Red Grey . 40 . Qty 1',
+                  price: '\$ ${order.productPrice}',
+                );
+              },
+              separatorBuilder: (context, index) {
+                return 10.verticalSpace;
+              },
+              itemCount: widget.orderSummaryParams.cartList.length,
             ),
           ),
         ],
@@ -203,14 +194,14 @@ class _OrderSummaryState extends State<OrderSummary> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Information",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text('Information',
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff101010),
+                ),
+              )),
           20.verticalSpace,
           const PaymentInformation(
             title: 'Payment Method',
@@ -245,22 +236,22 @@ class PaymentListTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            totalTitle,
-            style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w400,
-              color: const Color(0xff666666),
-            ),
-          ),
-          Text(
-            price,
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.w700,
-              color: const Color(0xff101010),
-            ),
-          ),
+          Text(totalTitle,
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: const Color(0xff666666),
+                ),
+              )),
+          Text(price,
+              style: GoogleFonts.urbanist(
+                textStyle: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xff101010),
+                ),
+              )),
         ],
       ),
     );
@@ -288,35 +279,35 @@ class OrderProductDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xff101010),
-              ),
-            ),
+            child: Text(title,
+                style: GoogleFonts.urbanist(
+                  textStyle: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xff101010),
+                  ),
+                )),
           ),
           Expanded(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                subTitle,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xff666666),
-                ),
-              ),
-              Text(
-                price,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  color: const Color(0xff101010),
-                ),
-              ),
+              Text(subTitle,
+                  style: GoogleFonts.urbanist(
+                    textStyle: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xff666666),
+                    ),
+                  )),
+              Text(price,
+                  style: GoogleFonts.urbanist(
+                    textStyle: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xff101010),
+                    ),
+                  )),
             ],
           ))
         ],
@@ -349,23 +340,23 @@ class PaymentInformation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xff160700),
-                  ),
-                ),
+                Text(title,
+                    style: GoogleFonts.urbanist(
+                      textStyle: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
+                        color: const Color(0xff160700),
+                      ),
+                    )),
                 const Spacer(),
-                Text(
-                  subTitle,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff160700),
-                  ),
-                ),
+                Text(subTitle,
+                    style: GoogleFonts.urbanist(
+                      textStyle: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xff160700),
+                      ),
+                    )),
               ],
             ),
           ),

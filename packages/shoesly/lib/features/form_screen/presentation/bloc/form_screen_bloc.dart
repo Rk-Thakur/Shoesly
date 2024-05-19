@@ -21,7 +21,8 @@ class FormScreenBloc extends Bloc<FormScreenEvent, FormScreenState> {
     final response = await formUseCase.call(event.formParams);
 
     response.fold(
-      (l) => emit(state.copyWith(formStatus: FormStatus.failure, message: l.message)),
+      (l) => emit(
+          state.copyWith(formStatus: FormStatus.failure, message: l.message)),
       (r) => emit(
         state.copyWith(formStatus: FormStatus.posted),
       ),

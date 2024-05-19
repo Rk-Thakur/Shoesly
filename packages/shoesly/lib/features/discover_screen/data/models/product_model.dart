@@ -8,16 +8,19 @@ class ProductModel extends ProductEntity {
     required super.productPrice,
     required super.productDescription,
     required super.productSize,
+    required super.productId,
+    required super.brandName,
   });
 
   factory ProductModel.fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
     return ProductModel(
-      productSize: List<double>.from(map['size']),
-      productDescription: map['productDescription'],
-      productImage: List<String>.from(map['productImage']),
-      productName: map['productName'] as String,
-      productPrice: map['price'] as int,
-    );
+        productSize: List<double>.from(map['size']),
+        productDescription: map['productDescription'],
+        productImage: List<String>.from(map['productImage']),
+        productName: map['productName'] as String,
+        productPrice: map['price'] as int,
+        productId: doc.id,
+        brandName: map['brand']);
   }
 }

@@ -16,9 +16,11 @@ abstract class FormDataRemoteDataSources {
 
 class FormDataRemoteDataSourcesImpl extends FormDataRemoteDataSources {
   @override
-  Future<Either<Failure, bool>> postProduct({required FormParams formParams}) async {
+  Future<Either<Failure, bool>> postProduct(
+      {required FormParams formParams}) async {
     try {
-      var imageUrls = await Future.wait(formParams.images.map((image) => uploadFile(image)));
+      var imageUrls = await Future.wait(
+          formParams.images.map((image) => uploadFile(image)));
 
       FirebaseFirestore.instance.collection('shoesly_collections').add({
         'productImage': imageUrls,
@@ -27,6 +29,7 @@ class FormDataRemoteDataSourcesImpl extends FormDataRemoteDataSources {
         'price': formParams.price,
         'size': formParams.sizes,
         'productId': formParams.productId,
+        'brand': formParams.brand,
       });
 
       return const Right(true);
@@ -37,8 +40,9 @@ class FormDataRemoteDataSourcesImpl extends FormDataRemoteDataSources {
 }
 
 Future<String> uploadFile(XFile image) async {
-  final storageReference =
-      FirebaseStorage.instance.ref().child('${currentUser!.displayName}/${image.name}');
+  final storageReference = FirebaseStorage.instance
+      .ref()
+      .child('${currentUser!.displayName}/${image.name}');
 
   await storageReference.putFile(File(image.path));
   return await storageReference.getDownloadURL();

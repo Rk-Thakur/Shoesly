@@ -9,7 +9,9 @@ scripts:
 
     format:
       description: Format Dart Code
-      exec: dart format .
+      run: |
+        melos exec -- dart format .
+        melos exec -- dart fix --apply
 
     svg:
       exec: dart run bin/svg.dart
@@ -19,3 +21,5 @@ scripts:
     clean:
       description: Clean all packages
       exec: flutter clean  
+
+      

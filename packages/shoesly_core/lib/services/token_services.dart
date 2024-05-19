@@ -10,8 +10,6 @@ class TokenService {
   static final TokenService _instance = TokenService._internal();
   late final Box<bool> _onBoardBox;
 
-  
-
   Future<void> initializeHive() async {
     _onBoardBox = Hive.box('onBoardBox');
   }

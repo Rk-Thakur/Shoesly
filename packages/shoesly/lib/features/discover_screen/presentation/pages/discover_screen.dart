@@ -1,8 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shoesly/features/discover_screen/presentation/bloc/discover_screen_bloc.dart';
-import 'package:shoesly/features/discover_screen/presentation/bloc/discover_screen_state.dart';
-import 'package:shoesly/features/product_detail_screen/presentation/pages/params/product_detail_params.dart';
 import 'package:shoesly/main.g.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -14,7 +9,14 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   int tappedIndex = 0;
-  List<String> brandTypes = ["All", "Nike", "Jordan", "Adidas", "Reebok", "Adidas", "Reebok"];
+  List<String> brandTypes = [
+    'All',
+    'Nike',
+    'Reebok',
+    'Addidas',
+    'Jordan',
+    'Vans'
+  ];
 
   @override
   void initState() {
@@ -26,6 +28,54 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
 
   fetchAllProductList(BuildContext context) {
     BlocProvider.of<DiscoverScreenBloc>(context).add(GetAllDiscoverEvent());
+  }
+
+  Widget getBrandIcon(String brandName) {
+    switch (brandName) {
+      case 'Nike':
+        return Picture(
+          source: Asset.images.nikeshade,
+          width: 12.w,
+          fit: BoxFit.cover,
+          height: 12.h,
+        );
+      case 'Jordan':
+        return Picture(
+          source: Asset.images.jordonshafe,
+          width: 12.w,
+          height: 12.h,
+          fit: BoxFit.cover,
+        );
+      case 'Adidas':
+        return Picture(
+          source: Asset.images.addidasshade,
+          width: 12.w,
+          height: 12.h,
+          fit: BoxFit.cover,
+        );
+      case 'Reebok':
+        return Picture(
+          source: Asset.images.xlingshade,
+          width: 12.w,
+          height: 12.h,
+          fit: BoxFit.cover,
+        );
+      case 'Vans':
+        return Picture(
+          source: Asset.images.vanshade,
+          width: 12.w,
+          height: 12.h,
+          fit: BoxFit.cover,
+        );
+
+      default:
+        return Picture(
+          source: Asset.images.nikeshade,
+          width: 12.w,
+          height: 12.h,
+          fit: BoxFit.cover,
+        );
+    }
   }
 
   @override
@@ -42,14 +92,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         },
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        label: Text(
-          "FILTER",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        label: Text('FILTER',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.urbanist(
+              textStyle: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            )),
         icon: const Badge(
           child: Icon(
             Icons.settings,
@@ -69,25 +119,41 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Discover',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 30.sp,
-                    letterSpacing: .3.sp,
-                  ),
+                Expanded(
+                  child: Text('Discover',
+                      style: GoogleFonts.urbanist(
+                        textStyle: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 30.sp,
+                          letterSpacing: .3.sp,
+                        ),
+                      )),
                 ),
-                // Badge(
-                //   child: Icon(
-                //     size: 24.sp,
-                //     Icons.shopping_cart,
-                //   ),
-                // ),
-                IconButton(
-                    onPressed: () {
-                      Utilities.pushNamed(context, ShoeslyRoutes.formScreen);
-                    },
-                    icon: const Icon(Icons.add))
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Badge(
+                        child: IconButton(
+                          onPressed: () {
+                            Utilities.pushNamed(
+                                context, ShoeslyRoutes.cartScreen);
+                          },
+                          icon: Icon(
+                            size: 24.sp,
+                            Icons.shopping_cart,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            Utilities.pushNamed(
+                                context, ShoeslyRoutes.formScreen);
+                          },
+                          icon: const Icon(Icons.add)),
+                    ],
+                  ),
+                )
               ],
             ),
             24.verticalSpace,
@@ -96,126 +162,188 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 children: [
                   _brandList(),
                   30.verticalSpace,
-                  Expanded(child: BlocBuilder<DiscoverScreenBloc, DiscoverScreenState>(
+                  Expanded(child:
+                      BlocBuilder<DiscoverScreenBloc, DiscoverScreenState>(
                     builder: (context, state) {
-                      if (state.productListStatus == ProductListStatus.loading) {
+                      if (state.productListStatus ==
+                          ProductListStatus.loading) {
                         return const Center(
                           child: CircularProgressIndicator.adaptive(),
                         );
-                      } else if (state.productListStatus == ProductListStatus.fetched) {
-                        return GridView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: state.productList.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisExtent: 234.h,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                            ),
-                            itemBuilder: (context, index) {
-                              final product = state.productList[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  Utilities.pushNamed(
-                                    context,
-                                    ShoeslyRoutes.productDetailScreen,
-                                    arguments: ProductDetailParams(
-                                      imageList: product.productImage,
-                                      size: product.productSize,
-                                      productDescription: product.productDescription,
-                                      productName: product.productName,
-                                    ),
-                                  );
+                      } else if (state.productListStatus ==
+                          ProductListStatus.fetched) {
+                        return state.productList.isEmpty
+                            ? Center(
+                                child: Text('No Brand Listed!!',
+                                    style: GoogleFonts.urbanist()),
+                              )
+                            : RefreshIndicator(
+                                onRefresh: () async {
+                                  await fetchAllProductList(context);
                                 },
-                                child: SizedBox(
-                                  width: 150.w,
-                                  height: 224.h,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 150.w,
-                                        height: 160.h,
-                                        decoration: BoxDecoration(
-                                          color: Colors.black45.withOpacity(.10),
-                                          borderRadius: BorderRadius.circular(20.sp),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: CachedNetworkImage(
-                                            imageUrl: product.productImage[0],
-                                            fit: BoxFit.contain,
-                                            placeholder: (context, url) {
-                                              return const Center(
-                                                child: CircularProgressIndicator.adaptive(),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      SizedBox(
-                                        width: 150.w,
-                                        height: 64.h,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              product.productName,
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 12.sp,
-                                              ),
+                                child: GridView.builder(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: state.productList.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      mainAxisExtent: 240.h,
+                                      crossAxisSpacing: 8.0,
+                                      mainAxisSpacing: 8.0,
+                                    ),
+                                    itemBuilder: (context, index) {
+                                      final product = state.productList[index];
+                                      return GestureDetector(
+                                        onTap: () {
+                                          Utilities.pushNamed(
+                                            context,
+                                            ShoeslyRoutes.productDetailScreen,
+                                            arguments: ProductDetailParams(
+                                              imageList: product.productImage,
+                                              size: product.productSize,
+                                              productDescription:
+                                                  product.productDescription,
+                                              productName: product.productName,
+                                              productId: product.productId,
+                                              price: product.productPrice,
                                             ),
-                                            5.verticalSpace,
-                                            SizedBox(
-                                              width: 110.w,
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Colors.yellow,
-                                                    size: 12.sp,
+                                          );
+                                        },
+                                        child: SizedBox(
+                                          width: 150.w,
+                                          height: 228.h,
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                width: 150.w,
+                                                height: 170.h,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black45
+                                                      .withOpacity(.10),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.sp),
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      15.0),
+                                                  child: Column(
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            Alignment.topLeft,
+                                                        child: getBrandIcon(
+                                                            product.brandName),
+                                                      ),
+                                                      4.verticalSpace,
+                                                      CachedNetworkImage(
+                                                        imageUrl: product
+                                                            .productImage[0],
+                                                        height: 124.h,
+                                                        width: double.infinity,
+                                                        fit: BoxFit.fill,
+                                                        placeholder:
+                                                            (context, url) {
+                                                          return const Center(
+                                                            child:
+                                                                CircularProgressIndicator
+                                                                    .adaptive(),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ],
                                                   ),
-                                                  Text(
-                                                    "4.5",
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 11.sp,
-                                                      color: const Color(0xff101010),
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "(1045 Reviews)",
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 11.sp,
-                                                      color: const Color(0xffB7B7B7),
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 24.h,
-                                              child: Text(
-                                                "${product.productPrice}",
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 16.sp,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              const Spacer(),
+                                              SizedBox(
+                                                width: 150.w,
+                                                height: 64.h,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(product.productName,
+                                                        style: GoogleFonts
+                                                            .urbanist(
+                                                          textStyle: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 12.sp,
+                                                          ),
+                                                        )),
+                                                    5.verticalSpace,
+                                                    SizedBox(
+                                                      width: 122.w,
+                                                      child: Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.star,
+                                                            color:
+                                                                Colors.yellow,
+                                                            size: 12.sp,
+                                                          ),
+                                                          5.horizontalSpace,
+                                                          Text('4.5',
+                                                              style: GoogleFonts
+                                                                  .urbanist(
+                                                                textStyle:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize:
+                                                                      11.sp,
+                                                                  color: const Color(
+                                                                      0xff101010),
+                                                                ),
+                                                              )),
+                                                          5.horizontalSpace,
+                                                          Text('(1024 Reviews)',
+                                                              style: GoogleFonts
+                                                                  .urbanist(
+                                                                textStyle:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                  fontSize:
+                                                                      11.sp,
+                                                                  color: const Color(
+                                                                      0xffB7B7B7),
+                                                                ),
+                                                              ))
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        height: 24.h,
+                                                        child: Text(
+                                                          '\$ ${product.productPrice.toStringAsFixed(2)}',
+                                                          style: GoogleFonts
+                                                              .urbanist(
+                                                            textStyle:
+                                                                TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              fontSize: 16.sp,
+                                                            ),
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                      );
+                                    }),
                               );
-                            });
-                      } else if (state.productListStatus == ProductListStatus.failure) {
+                      } else if (state.productListStatus ==
+                          ProductListStatus.failure) {
                         return Center(
                           child: Text(state.message),
                         );
@@ -248,6 +376,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 setState(() {
                   tappedIndex = index;
                 });
+                if (index == 0) {
+                  BlocProvider.of<DiscoverScreenBloc>(context)
+                      .add(GetAllDiscoverEvent());
+                } else {
+// for the brand  names
+                  BlocProvider.of<DiscoverScreenBloc>(context)
+                      .add(GetBrandDiscoverEvent(brandName: brand));
+                }
               },
               child: Text(
                 brand,
@@ -255,7 +391,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   fontWeight: FontWeight.w700,
                   fontSize: 24.sp,
                   letterSpacing: .2,
-                  color: index == tappedIndex ? const Color(0xff101010) : const Color(0xffB7B7B7),
+                  color: index == tappedIndex
+                      ? const Color(0xff101010)
+                      : const Color(0xffB7B7B7),
                 ),
               ),
             ),

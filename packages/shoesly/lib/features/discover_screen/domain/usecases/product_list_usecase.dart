@@ -7,7 +7,8 @@ import 'package:shoesly_core/error/failure.dart';
 import 'package:shoesly_core/params/params.dart';
 import 'package:shoesly_core/usecases/shoesly_usecase.dart';
 
-class ProductListUseCase implements ShoeslyUseCase<List<ProductEntity>, NoParams> {
+class ProductListUseCase
+    implements ShoeslyUseCase<List<ProductEntity>, NoParams> {
   late DiscoverRepository _discoverRepository;
   ProductListUseCase({
     required DiscoverRepository discoverRepository,
