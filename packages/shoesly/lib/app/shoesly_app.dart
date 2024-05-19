@@ -7,23 +7,36 @@ class ShoeslyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 872),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateTitle: (context) => '',
-          title: 'Shoesly',
-          theme: ThemeData(
-            useMaterial3: true,
-            // colorScheme: LearningTheme.lightColorScheme,
-            // textTheme: LearningFont.lightTextTheme,
-          ),
-          onGenerateRoute: ShoeslyRouter.onGenerateRoute,
-        );
-      },
+    return MultiBlocProvider(
+      providers: ShoeslyBlocProvider.providers,
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            onGenerateTitle: (context) => '',
+            title: 'Shoesly',
+            theme: ThemeData(
+                useMaterial3: true,
+                floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                  backgroundColor: Colors.black,
+                ),
+                textTheme: GoogleFonts.urbanistTextTheme(
+                  Theme.of(context).textTheme,
+                ),
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.black54,
+                ),
+                sliderTheme: const SliderThemeData(
+                  thumbColor: Colors.black,
+                  activeTrackColor: Colors.black,
+                )),
+            onGenerateRoute: ShoeslyRouter.onGenerateRoute,
+          );
+        },
+      ),
     );
   }
 }

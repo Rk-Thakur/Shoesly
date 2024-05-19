@@ -71,7 +71,13 @@
       "name": "flutter",
       "rootUri": "file:///E:/fluttersdk/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "flutter_lints",
+      "rootUri": "file:///C:/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-3.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
     },
     {
       "name": "glob",
@@ -110,6 +116,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "lints",
+      "rootUri": "file:///C:/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/lints-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.16+1",
       "packageUri": "lib/",
@@ -129,7 +141,7 @@
     },
     {
       "name": "meta",
-      "rootUri": "file:///C:/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.11.0",
+      "rootUri": "file:///C:/Users/User/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.12.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -284,7 +296,10 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-05-11T15:50:43.707409Z",
+  "generated": "2024-05-19T13:41:49.478730Z",
   "generator": "pub",
-  "generatorVersion": "3.3.4"
+  "generatorVersion": "3.4.0",
+  "flutterRoot": "file:///E:/fluttersdk/flutter",
+  "flutterVersion": "3.22.0",
+  "pubCache": "file:///C:/Users/User/AppData/Local/Pub/Cache"
 }

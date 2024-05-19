@@ -11,4 +11,4 @@ dependencies:
   melos: ^6.0.0
   very_good_analysis: ^5.1.0
 
-
+  flutter_lints: ^3.0.0
