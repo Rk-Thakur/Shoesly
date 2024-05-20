@@ -25,7 +25,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Cart',
+          ShoeslyStrings.cart,
           style: GoogleFonts.urbanist(
               textStyle: TextStyle(
             fontSize: 16.sp,
@@ -49,7 +49,7 @@ class _CartScreenState extends State<CartScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('Grand',
+                  Text(ShoeslyStrings.grand,
                       style: GoogleFonts.urbanist(
                         textStyle: TextStyle(
                           fontSize: 16.sp,
@@ -91,7 +91,7 @@ class _CartScreenState extends State<CartScreen> {
                     borderRadius: BorderRadius.circular(100.sp),
                   ),
                   child: Center(
-                    child: Text('CHECK OUT ',
+                    child: Text(ShoeslyStrings.checkout,
                         style: GoogleFonts.urbanist(
                           textStyle: TextStyle(
                             fontSize: 16.sp,
@@ -154,7 +154,7 @@ class _CartScreenState extends State<CartScreen> {
                                     height: 88.h,
                                     width: 88.w,
                                     decoration: BoxDecoration(
-                                      color: Colors.black45,
+                                      color: Colors.black45.withOpacity(.10),
                                       borderRadius:
                                           BorderRadius.circular(30.sp),
                                     ),
@@ -192,7 +192,7 @@ class _CartScreenState extends State<CartScreen> {
                                         ),
                                         5.verticalSpace,
                                         Text(
-                                          'Nike . Red Gray . 40',
+                                          ShoeslyStrings.nikeRedGray,
                                           style: GoogleFonts.urbanist(
                                             textStyle: TextStyle(
                                               fontSize: 14.sp,

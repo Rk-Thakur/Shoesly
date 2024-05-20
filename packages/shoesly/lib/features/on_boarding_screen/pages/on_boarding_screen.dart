@@ -44,9 +44,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Utilities.pushNamedAndRemoveUntil(
+                        context,
+                        ShoeslyRoutes.loginScreen,
+                      );
+                    },
                     child: const Icon(
-                      Icons.abc_outlined,
+                      Icons.skip_next,
+                      color: Colors.black,
                     ),
                   ),
                 ],
@@ -126,7 +132,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       ],
                     ),
                   ),
-                  FilledButton(
+                  ElevatedButton(
                     onPressed: () {
                       _pagaeIndex != demoData.length - 1
                           ? _pageController.nextPage(
@@ -142,6 +148,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       _pagaeIndex != demoData.length - 1
                           ? 'Next'
                           : 'Getting Started',
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ],
@@ -170,7 +179,7 @@ class DotIndicator extends StatelessWidget {
       width: isActive ? 25.w : 15.w,
       decoration: BoxDecoration(
         color: isActive
-            ? Theme.of(context).colorScheme.primary
+            ? Colors.black
             : Theme.of(context).colorScheme.secondary.withOpacity(.5),
         borderRadius: const BorderRadius.all(
           Radius.circular(4),
@@ -193,18 +202,18 @@ class OnBoardModal {
 
 List<OnBoardModal> demoData = [
   OnBoardModal(
-    title: ' LearningStrings.firstOnboardTitle',
-    description: 'LearningStrings.firstOnboardDescription',
-    image: Asset.images.book,
+    description: ShoeslyStrings.firstOnBoardTitle,
+    title: ShoeslyStrings.firstOnboardDescription,
+    image: Asset.images.onboard1,
   ),
   OnBoardModal(
-    title: 'LearningStrings.secondOnboardTitle',
-    description: 'LearningStrings.secondOnboardDescription',
-    image: Asset.images.xlingbold,
+    title: ShoeslyStrings.secondOnboardTitle,
+    description: ShoeslyStrings.secondOnboardDescription,
+    image: Asset.images.onboard2,
   ),
   OnBoardModal(
-    title: 'LearningStrings.thirdOnboardTitle',
-    description: 'LearningStrings.thirdOnboardDescription',
-    image: Asset.images.pumabold,
+    title: ShoeslyStrings.thirdOnboardTitle,
+    description: ShoeslyStrings.thirdOnboardDescription,
+    image: Asset.images.onboard3,
   ),
 ];

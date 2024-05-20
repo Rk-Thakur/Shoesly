@@ -15,6 +15,9 @@ final class AssetImages {
   String get book => 'assets/images-bin/book.svg.vec';
   String get pumashade => 'assets/images-bin/pumashade.svg.vec';
   String get nikeshade => 'assets/images-bin/nikeshade.svg.vec';
+  String get onboard1 => 'assets/images-bin/onboard1.svg.vec';
+  String get onboard2 => 'assets/images-bin/onboard2.svg.vec';
+  String get onboard3 => 'assets/images-bin/onboard3.svg.vec';
   String get addidasbold => 'assets/images-bin/addidasbold.svg.vec';
   String get shoe2 => 'assets/images-bin/shoe2.svg.vec';
   String get pumabold => 'assets/images-bin/pumabold.svg.vec';

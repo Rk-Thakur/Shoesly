@@ -26,9 +26,10 @@ class ShoeslyApp extends StatelessWidget {
                 textTheme: GoogleFonts.urbanistTextTheme(
                   Theme.of(context).textTheme,
                 ),
-                colorScheme: ColorScheme.fromSeed(
-                  seedColor: Colors.black54,
-                ),
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                  foregroundColor: Colors.black,
+                )),
                 sliderTheme: const SliderThemeData(
                   thumbColor: Colors.black,
                   activeTrackColor: Colors.black,
