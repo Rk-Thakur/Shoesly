@@ -24,7 +24,7 @@ class _FormScreenState extends State<FormScreen> {
   final priceController = TextEditingController();
   final brandController = TextEditingController();
 
-  List<String> brandList = ['Nike', 'Reebok', 'Addidas', 'Jordan', 'Vans'];
+  List<String> brandList = ShoeslyStrings.brandList;
   String selectedValue = 'Nike';
   final _globalKey = GlobalKey<FormState>();
   String _errorMessage = '';
@@ -39,13 +39,13 @@ class _FormScreenState extends State<FormScreen> {
         });
       } else {
         setState(() {
-          _errorMessage = 'No Image Selected';
+          _errorMessage = ShoeslyStrings.noImageSelected;
         });
       }
     } catch (e) {
       print('Image picking error: $e');
       setState(() {
-        _errorMessage = 'Error Picking Images';
+        _errorMessage = ShoeslyStrings.errorPickingImages;
       });
     }
   }
@@ -75,7 +75,7 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     final formState = context.watch<FormScreenBloc>().state;
     return Scaffold(
-      appBar: AppBar(title: const Text('Add Product')),
+      appBar: AppBar(title: const Text(ShoeslyStrings.addProduct)),
       body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 22.sp,
@@ -129,7 +129,7 @@ class _FormScreenState extends State<FormScreen> {
                                 child: Text(
                                   _errorMessage.isNotEmpty
                                       ? _errorMessage
-                                      : 'No Image Selected!',
+                                      : ShoeslyStrings.noImageSelected,
                                 ),
                               ),
                       ),
@@ -138,11 +138,11 @@ class _FormScreenState extends State<FormScreen> {
                         controller: nameController,
                         validator: (value) {
                           return value!.isEmpty
-                              ? 'Enter the Product Name'
+                              ? ShoeslyStrings.enterProductName
                               : null;
                         },
                         decoration: InputDecoration(
-                            hintText: 'Product Name',
+                            hintText: ShoeslyStrings.productName,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                                 borderSide: const BorderSide(
@@ -154,7 +154,7 @@ class _FormScreenState extends State<FormScreen> {
                       10.verticalSpace,
                       DropdownButtonFormField<String>(
                           decoration: InputDecoration(
-                              hintText: 'Brands',
+                              hintText: ShoeslyStrings.brands,
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   borderSide: const BorderSide(
@@ -163,7 +163,9 @@ class _FormScreenState extends State<FormScreen> {
                                     style: BorderStyle.solid,
                                   ))),
                           validator: (value) {
-                            return value!.isEmpty ? 'Select Brands' : null;
+                            return value!.isEmpty
+                                ? ShoeslyStrings.selectBrands
+                                : null;
                           },
                           isExpanded: true,
                           value: selectedValue,
@@ -185,10 +187,12 @@ class _FormScreenState extends State<FormScreen> {
                         controller: _textEditingController,
                         readOnly: true,
                         validator: (value) {
-                          return value!.isEmpty ? 'Select the size..' : null;
+                          return value!.isEmpty
+                              ? ShoeslyStrings.selectTheSize
+                              : null;
                         },
                         decoration: InputDecoration(
-                            hintText: 'Size',
+                            hintText: ShoeslyStrings.size,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                                 borderSide: const BorderSide(
@@ -248,11 +252,11 @@ class _FormScreenState extends State<FormScreen> {
                         maxLines: 5,
                         validator: (value) {
                           return value!.isEmpty
-                              ? 'Add the description of the product..'
+                              ? ShoeslyStrings.addTheDescriptionOfTheProduct
                               : null;
                         },
                         decoration: InputDecoration(
-                            hintText: 'Description',
+                            hintText: ShoeslyStrings.description,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                                 borderSide: const BorderSide(
@@ -265,11 +269,13 @@ class _FormScreenState extends State<FormScreen> {
                       TextFormField(
                         controller: priceController,
                         validator: (value) {
-                          return value!.isEmpty ? 'Select the price.' : null;
+                          return value!.isEmpty
+                              ? ShoeslyStrings.selectPrice
+                              : null;
                         },
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                            hintText: 'Price',
+                            hintText: ShoeslyStrings.price,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                                 borderSide: const BorderSide(

@@ -8,8 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoesly/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:shoesly/features/authentication/presentation/bloc/authentication_state.dart';
-
-import 'package:shoesly/utils/routing/src/routes.dart';
+import 'package:shoesly/utils/routing/routing.dart';
+import 'package:shoesly_core/shoesly_core.dart';
 import 'package:shoesly_core/utilities/shoesly_utilities.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 color: Colors.red,
                               ),
                               Text(
-                                'Google Login',
+                                ShoeslyStrings.googleLogin,
                                 style: GoogleFonts.urbanist(
                                     textStyle: TextStyle(
                                   fontSize: 16.sp,

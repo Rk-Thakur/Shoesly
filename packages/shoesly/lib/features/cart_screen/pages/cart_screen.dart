@@ -14,7 +14,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Cart",
+          ShoeslyStrings.cart,
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
@@ -34,7 +34,7 @@ class _CartScreenState extends State<CartScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Grand",
+                    ShoeslyStrings.grand,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -43,7 +43,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   // const Spacer(),
                   Text(
-                    "\$235.00",
+                    '\$235.00',
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "CHECK OUT ",
+                      ShoeslyStrings.checkout,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -116,7 +116,7 @@ class _CartScreenState extends State<CartScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Jordan 1 Retro High Tie Dye",
+                                  ShoeslyStrings.jordan1RetroHighTieDye,
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.w600,
@@ -125,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 5.verticalSpace,
                                 Text(
-                                  "Nike . Red Gray . 40",
+                                  ShoeslyStrings.nikeRedGray,
                                   style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w400,
@@ -137,7 +137,7 @@ class _CartScreenState extends State<CartScreen> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "\$235,00",
+                                        '\$235,00',
                                         style: TextStyle(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w600,

@@ -9,15 +9,7 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   int tappedIndex = 0;
-  List<String> brandTypes = [
-    "All",
-    "Nike",
-    "Jordan",
-    "Adidas",
-    "Reebok",
-    "Adidas",
-    "Reebok"
-  ];
+  List<String> brandTypes = ShoeslyStrings.brandType;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +23,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         label: Text(
-          "FILTER",
+          ShoeslyStrings.filter,
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 14.sp,
@@ -58,7 +50,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Discover',
+                  ShoeslyStrings.discover,
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 30.sp,
@@ -124,7 +116,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Jordan 1 Retro High Tie Dye',
+                                            ShoeslyStrings
+                                                .jordan1RetroHighTieDye,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12.sp,
@@ -144,7 +137,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                   size: 12.sp,
                                                 ),
                                                 Text(
-                                                  "4.5",
+                                                  '4.5',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 11.sp,
@@ -153,7 +146,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  "(1045 Reviews)",
+                                                  '(1045 Reviews)',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 11.sp,
@@ -167,7 +160,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                           SizedBox(
                                             height: 24.h,
                                             child: Text(
-                                              "\$235,00",
+                                              '\$235,00',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 16.sp,
