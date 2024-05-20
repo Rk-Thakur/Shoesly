@@ -17,10 +17,8 @@ class ShoeslyStrings {
     'All',
     'Nike',
     'Jordan',
-    'Adidas',
+    'Addidas',
     'Reebok',
-    'Adidas',
-    'Reebok'
   ];
 
   static const discover = 'Discover';

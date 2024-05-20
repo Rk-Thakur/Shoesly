@@ -89,6 +89,31 @@ https://medium.com/@rohitsuhag7/setup-sonarqube-locally-for-flutter-on-mac-2db92
 
 ## Screenshots
 
-![App Screenshot](https://images.unsplash.com/photo-1715588561967-6d413b6690bf?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
 
-<img src="packages/shoesly_resources/assets/appimages/dark.png" width="390" height="844">
+
+<img src="packages/shoesly_resources/assets/appimages/flutter_01.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_02.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_03.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_04.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_05.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_06.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_07.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_08.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_09.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_10.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_11.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_12.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_13.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_14.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_15.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_16.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_17.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_18.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_19.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_20.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_21.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_22.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_23.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_24.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_25.png" width="375" height="812">
+<img src="packages/shoesly_resources/assets/appimages/flutter_26.png" width="375" height="812">
