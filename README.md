@@ -111,6 +111,12 @@ https://medium.com/@rohitsuhag7/setup-sonarqube-locally-for-flutter-on-mac-2db92
     melos bs
 ```
 
+**Melos Bootstrap: for changing svg to vectorimage**
+
+```bash
+    melos run svg  
+```
+
 **Run the project**
 
 ```bash

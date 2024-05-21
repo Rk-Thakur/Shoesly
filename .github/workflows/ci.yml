@@ -1,11 +1,11 @@
 on:
   pull_request:
     branches:
-      - "master"
+      - "shoesly"
 
   push:
     branches:
-      - "master"
+      - "shoesly"
 
 name: "Build and Release"
 jobs:
