@@ -24,6 +24,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images-bin/
-    - assets/appimages
+
 
 

@@ -311,7 +311,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'ADD TO CART',
+                                      'Comment',
                                       style: TextStyle(
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w700,

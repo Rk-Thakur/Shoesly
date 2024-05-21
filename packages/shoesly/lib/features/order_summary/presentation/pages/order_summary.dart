@@ -148,9 +148,9 @@ class _OrderSummaryState extends State<OrderSummary> {
             price: '\$20.00',
           ),
           40.verticalSpace,
-          const PaymentListTile(
+          PaymentListTile(
             totalTitle: 'Total Order',
-            price: '\$725.00',
+            price: '\$ ${widget.orderSummaryParams.grandTotal + shippingCost}',
           ),
         ],
       ),

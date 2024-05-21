@@ -28,8 +28,15 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       );
     } else {
-      if (!mounted) return;
-      BlocProvider.of<SplashScreenBloc>(context).add(AuthStatusEvent());
+      Future.delayed(
+        const Duration(seconds: 3),
+        () => Utilities.pushNamedAndRemoveUntil(
+          context,
+          ShoeslyRoutes.discoverScreen,
+        ),
+      );
+      // if (!mounted) return;
+      // BlocProvider.of<SplashScreenBloc>(context).add(AuthStatusEvent());
     }
   }
 
