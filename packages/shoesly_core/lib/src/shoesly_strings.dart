@@ -17,15 +17,8 @@ class ShoeslyStrings {
     'All',
     'Nike',
     'Jordan',
-<<<<<<< HEAD
-    'Adidas',
-    'Reebok',
-    'Adidas',
-    'Reebok'
-=======
     'Addidas',
     'Reebok',
->>>>>>> 9fa7a5aec69a19d57d4480860c4059447c5ad033
   ];
 
   static const discover = 'Discover';
@@ -52,8 +45,6 @@ class ShoeslyStrings {
   static const description = 'Description';
   static const selectPrice = 'Select Price';
   static const price = 'Price';
-<<<<<<< HEAD
-=======
 
   //On Boarding Screen
 
@@ -66,5 +57,4 @@ class ShoeslyStrings {
   static const thirdOnboardTitle = 'Stay Ahead of the Game';
   static const thirdOnboardDescription =
       'Emphasizes staying ahead of the game with exclusive releases';
->>>>>>> 9fa7a5aec69a19d57d4480860c4059447c5ad033
 }
