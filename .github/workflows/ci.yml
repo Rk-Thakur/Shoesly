@@ -43,3 +43,4 @@ jobs:
           artifacts: "pacakages/shoesly/build/app/output/apk/debug/*"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
+          
