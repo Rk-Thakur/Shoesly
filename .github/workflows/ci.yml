@@ -40,6 +40,7 @@ jobs:
         if: matrix.project == 'packages/shoesly'
         uses: ncipollo/release-action@v1
         with: 
-          artifacts: "build/app/output/apk/debug/*"
+          artifacts: "packages/shoesly/build/app/output/apk/debug/*"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
+          
