@@ -65,7 +65,16 @@ class _OrderSummaryState extends State<OrderSummary> {
             )),
             Expanded(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Payment Has Been Done!!',
+                      ),
+                    ),
+                  );
+                  Utilities.pushNamed(context, ShoeslyRoutes.discoverScreen);
+                },
                 child: Container(
                   height: 54.h,
                   width: 160.w,
@@ -139,9 +148,9 @@ class _OrderSummaryState extends State<OrderSummary> {
             price: '\$20.00',
           ),
           40.verticalSpace,
-          const PaymentListTile(
+          PaymentListTile(
             totalTitle: 'Total Order',
-            price: '\$725.00',
+            price: '\$ ${widget.orderSummaryParams.grandTotal + shippingCost}',
           ),
         ],
       ),

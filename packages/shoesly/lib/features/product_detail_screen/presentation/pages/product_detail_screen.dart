@@ -311,7 +311,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      'ADD TO CART',
+                                      'Comment',
                                       style: TextStyle(
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w700,
@@ -797,14 +797,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           SizedBox(
             height: 100.h,
             width: double.infinity,
-            child: FittedBox(
-              child: Text(
-                description,
-                style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff6F6F6F)),
-              ),
+            child: Text(
+              description,
+              style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: const Color(0xff6F6F6F)),
             ),
           )
         ],

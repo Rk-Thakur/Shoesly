@@ -9,14 +9,7 @@ class DiscoverScreen extends StatefulWidget {
 
 class _DiscoverScreenState extends State<DiscoverScreen> {
   int tappedIndex = 0;
-  List<String> brandTypes = [
-    'All',
-    'Nike',
-    'Reebok',
-    'Addidas',
-    'Jordan',
-    'Vans'
-  ];
+  List<String> brandTypes = ShoeslyStrings.brandType;
 
   @override
   void initState() {
@@ -92,7 +85,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         },
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        label: Text('FILTER',
+        label: Text(ShoeslyStrings.filter,
             textAlign: TextAlign.center,
             style: GoogleFonts.urbanist(
               textStyle: TextStyle(
@@ -120,7 +113,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text('Discover',
+                  child: Text(ShoeslyStrings.discover,
                       style: GoogleFonts.urbanist(
                         textStyle: TextStyle(
                           fontWeight: FontWeight.w700,

@@ -3,6 +3,7 @@
 
 final class Asset {
   static const AssetImages images = AssetImages();
+  static const AssetAppimages appimages = AssetAppimages();
 }
 
 final class AssetImages {
@@ -15,10 +16,44 @@ final class AssetImages {
   String get book => 'assets/images-bin/book.svg.vec';
   String get pumashade => 'assets/images-bin/pumashade.svg.vec';
   String get nikeshade => 'assets/images-bin/nikeshade.svg.vec';
+  String get onboard1 => 'assets/images-bin/onboard1.svg.vec';
+  String get onboard2 => 'assets/images-bin/onboard2.svg.vec';
+  String get onboard3 => 'assets/images-bin/onboard3.svg.vec';
   String get addidasbold => 'assets/images-bin/addidasbold.svg.vec';
   String get shoe2 => 'assets/images-bin/shoe2.svg.vec';
   String get pumabold => 'assets/images-bin/pumabold.svg.vec';
   String get xlingshade => 'assets/images-bin/xlingshade.svg.vec';
   String get shoe1 => 'assets/images-bin/shoe1.svg.vec';
   String get nikebold => 'assets/images-bin/nikebold.svg.vec';
+}
+
+final class AssetAppimages {
+  const AssetAppimages();
+
+  String get flutter_23 => 'assets/appimages-bin/flutter_23.png.vec';
+  String get flutter_22 => 'assets/appimages-bin/flutter_22.png.vec';
+  String get flutter_08 => 'assets/appimages-bin/flutter_08.png.vec';
+  String get flutter_20 => 'assets/appimages-bin/flutter_20.png.vec';
+  String get flutter_21 => 'assets/appimages-bin/flutter_21.png.vec';
+  String get flutter_09 => 'assets/appimages-bin/flutter_09.png.vec';
+  String get flutter_25 => 'assets/appimages-bin/flutter_25.png.vec';
+  String get flutter_19 => 'assets/appimages-bin/flutter_19.png.vec';
+  String get flutter_18 => 'assets/appimages-bin/flutter_18.png.vec';
+  String get flutter_24 => 'assets/appimages-bin/flutter_24.png.vec';
+  String get flutter_26 => 'assets/appimages-bin/flutter_26.png.vec';
+  String get flutter_02 => 'assets/appimages-bin/flutter_02.png.vec';
+  String get flutter_16 => 'assets/appimages-bin/flutter_16.png.vec';
+  String get flutter_17 => 'assets/appimages-bin/flutter_17.png.vec';
+  String get flutter_03 => 'assets/appimages-bin/flutter_03.png.vec';
+  String get flutter_15 => 'assets/appimages-bin/flutter_15.png.vec';
+  String get flutter_01 => 'assets/appimages-bin/flutter_01.png.vec';
+  String get flutter_14 => 'assets/appimages-bin/flutter_14.png.vec';
+  String get flutter_10 => 'assets/appimages-bin/flutter_10.png.vec';
+  String get flutter_04 => 'assets/appimages-bin/flutter_04.png.vec';
+  String get flutter_05 => 'assets/appimages-bin/flutter_05.png.vec';
+  String get flutter_11 => 'assets/appimages-bin/flutter_11.png.vec';
+  String get flutter_07 => 'assets/appimages-bin/flutter_07.png.vec';
+  String get flutter_13 => 'assets/appimages-bin/flutter_13.png.vec';
+  String get flutter_12 => 'assets/appimages-bin/flutter_12.png.vec';
+  String get flutter_06 => 'assets/appimages-bin/flutter_06.png.vec';
 }

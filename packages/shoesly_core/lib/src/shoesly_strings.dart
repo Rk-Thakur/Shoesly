@@ -17,10 +17,15 @@ class ShoeslyStrings {
     'All',
     'Nike',
     'Jordan',
+<<<<<<< HEAD
     'Adidas',
     'Reebok',
     'Adidas',
     'Reebok'
+=======
+    'Addidas',
+    'Reebok',
+>>>>>>> 9fa7a5aec69a19d57d4480860c4059447c5ad033
   ];
 
   static const discover = 'Discover';
@@ -47,4 +52,19 @@ class ShoeslyStrings {
   static const description = 'Description';
   static const selectPrice = 'Select Price';
   static const price = 'Price';
+<<<<<<< HEAD
+=======
+
+  //On Boarding Screen
+
+  static const firstOnBoardTitle = 'Your Ultimate Sneaker Hub';
+  static const firstOnboardDescription =
+      'Introduces the app as the ultimate sneaker hub';
+  static const secondOnboardTitle = 'Find Your Perfect Pair';
+  static const secondOnboardDescription =
+      'Focuses on finding the perfect pair of sneakers for each user';
+  static const thirdOnboardTitle = 'Stay Ahead of the Game';
+  static const thirdOnboardDescription =
+      'Emphasizes staying ahead of the game with exclusive releases';
+>>>>>>> 9fa7a5aec69a19d57d4480860c4059447c5ad033
 }
