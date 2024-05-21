@@ -157,3 +157,5 @@ https://medium.com/@rohitsuhag7/setup-sonarqube-locally-for-flutter-on-mac-2db92
 <img src="packages/shoesly/assets/appimages/flutter_24.png" width="375" height="812">
 <img src="packages/shoesly/assets/appimages/flutter_25.png" width="375" height="812">
 <img src="packages/shoesly/assets/appimages/flutter_26.png" width="375" height="812">
+<img src="packages/shoesly/assets/appimages/sonarqube1.png" width="575" height="812">
+<img src="packages/shoesly/assets/appimages/sonarqube1.png" width="575" height="812">
