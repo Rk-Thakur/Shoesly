@@ -33,6 +33,9 @@ your_project/
 ```
 
 
+## **Documentation**
+[Documentation](https://docs.google.com/document/d/16LrEJ_zYHaXfD0N90GaUsxgsa-BI9nMPTnapwoXAZKM/edit?usp=sharing)
+
 
 ## **Tech Stack**
 
