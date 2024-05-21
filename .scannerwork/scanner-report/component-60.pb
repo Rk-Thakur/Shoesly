@@ -1,0 +1,1 @@
+< 2dartXÈ	hrapackages/shoesly/lib/features/product_detail_screen/presentation/pages/product_detail_screen.dart

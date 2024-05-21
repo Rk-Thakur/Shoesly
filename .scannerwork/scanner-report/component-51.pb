@@ -1,0 +1,1 @@
+3 2dartXhrfpackages/shoesly/lib/features/product_detail_screen/domain/repositories/product_detail_repository.dart

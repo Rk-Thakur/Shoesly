@@ -1,0 +1,45 @@
+Plugins:
+  - Flutter 0.5.1-SNAPSHOT (flutter)
+Bundled analyzers:
+  - Python Code Quality and Security 4.3.0.11660 (python)
+  - Clean as You Code 2.0.0.334 (cayc)
+  - Go Code Quality and Security 1.13.0.4374 (go)
+  - JaCoCo 1.3.0.1538 (jacoco)
+  - Kotlin Code Quality and Security 2.15.0.2579 (kotlin)
+  - IaC Code Quality and Security 1.17.0.3976 (iac)
+  - JavaScript/TypeScript/CSS Code Quality and Security 10.3.1.21905 (javascript)
+  - Ruby Code Quality and Security 1.13.0.4374 (ruby)
+  - Scala Code Quality and Security 1.13.0.4374 (sonarscala)
+  - C# Code Quality and Security 9.3.0.71466 (csharp)
+  - Java Code Quality and Security 7.20.0.31692 (java)
+  - HTML Code Quality and Security 3.8.0.3510 (web)
+  - Flex Code Quality and Security 2.9.0.3375 (flex)
+  - XML Code Quality and Security 2.8.1.4006 (xml)
+  - PHP Code Quality and Security 3.30.0.9766 (php)
+  - Text Code Quality and Security 2.1.0.1163 (text)
+  - VB.NET Code Quality and Security 9.3.0.71466 (vbnet)
+  - Configuration detection fot Code Quality and Security 1.2.0.267 (config)
+Global server settings:
+  - sonar.core.id=147B411E-AY8KEo0sXtZsxjJyq4Fn
+  - sonar.core.startTime=2024-05-21T15:28:54+0000
+  - sonar.forceAuthentication=true
+  - sonar.plugins.risk.consent=ACCEPTED
+Project server settings:
+Project scanner properties:
+  - sonar.dart.analyzer.options.override=true
+  - sonar.exclusions=test/**/*_test.mocks.dart,packages/shoesly/lib/**/*.g.dart
+  - sonar.host.url=http://localhost:9000
+  - sonar.lang.patterns.dart=**/*.dart
+  - sonar.language=dart
+  - sonar.login=******
+  - sonar.password=******
+  - sonar.projectBaseDir=E:\FlutterProject\Shoesly
+  - sonar.projectKey=shoesly
+  - sonar.projectName=shoesly
+  - sonar.scanner.app=ScannerCLI
+  - sonar.scanner.appVersion=5.0.1.3006
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=packages/shoesly/lib/, packages/shoesly/pubspec.yaml
+  - sonar.tests=packages/shoesly/test
+  - sonar.verbose=true
+  - sonar.working.directory=E:\FlutterProject\Shoesly\.scannerwork

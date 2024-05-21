@@ -1,0 +1,1 @@
+ 2dartXhrQpackages/shoesly/lib/features/discover_screen/domain/entities/product_entity.dart

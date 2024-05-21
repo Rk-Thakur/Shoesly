@@ -1,0 +1,1 @@
+7 2dartXÔhrTpackages/shoesly/lib/features/product_detail_screen/pages/product_detail_screen.dart

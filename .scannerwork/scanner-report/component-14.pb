@@ -1,0 +1,1 @@
+ 2dartXhrOpackages/shoesly/lib/features/cart_screen/domain/entities/cart_list_entity.dart

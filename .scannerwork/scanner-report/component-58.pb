@@ -1,0 +1,1 @@
+: 2dartX+hrfpackages/shoesly/lib/features/product_detail_screen/presentation/bloc/product_detail_screen_state.dart

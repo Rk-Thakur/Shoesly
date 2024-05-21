@@ -1,0 +1,1 @@
+I 2dartXEhr*packages/shoesly/lib/firebase_options.dart

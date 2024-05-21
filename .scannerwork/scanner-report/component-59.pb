@@ -1,0 +1,1 @@
+; 2dartXhrhpackages/shoesly/lib/features/product_detail_screen/presentation/pages/params/product_detail_params.dart

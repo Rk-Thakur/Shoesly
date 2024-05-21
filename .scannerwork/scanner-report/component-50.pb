@@ -1,0 +1,1 @@
+2 2dartXhrWpackages/shoesly/lib/features/product_detail_screen/domain/entities/comment_entity.dart

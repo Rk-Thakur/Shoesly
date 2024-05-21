@@ -1,0 +1,1 @@
+* 2dartXhrUpackages/shoesly/lib/features/order_summary/presentation/bloc/order_summary_bloc.dart
