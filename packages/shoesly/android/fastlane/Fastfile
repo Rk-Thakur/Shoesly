@@ -1,0 +1,60 @@
+
+default_platform(:android)
+platform :android do
+  desc "Build a new alpha version"
+  before_all do
+      Dotenv.load ".env"
+    end
+  # This lane is responsible for building a new alpha version of the Android application.
+  # It performs various tasks to prepare the alpha release, including cleaning the project,
+  # fetching dependencies, generating necessary files, and building the APK.
+  # Once the build process is complete, the APK is signed and prepared for distribution.
+  # Additionally, versioning information is updated to ensure each alpha release has a
+  # unique identifier.
+  lane :alpha do |options|
+      
+            latest_release = firebase_app_distribution_get_latest_release(
+                app: ENV['APP_ID'],
+              service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE'])
+
+            puts latest_release
+
+            latest_version_name = latest_release[:displayVersion] 
+            latest_build_number = (latest_release[:buildVersion].to_i + 1)
+
+
+
+            sh "flutter clean"
+            sh "flutter pub get"
+
+            sh "dart fix --apply --code=unused_import"
+            sh "flutter build apk --release --build-number=#{latest_build_number} --build-name=#{latest_version_name}"
+            firebase_app_distribution(
+              app: ENV['APP_ID'],
+              groups: "shoesly",
+              release_notes: 'Shoesly Bug Fixes',
+              android_artifact_type: 'APK',
+              android_artifact_path: ENV['ANDROID_ARTIFACT_PATH'],
+              service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE'],
+              firebase_cli_token: ENV['FIREBASE_TOKEN']
+            )
+
+
+  end
+end
+
+def get_updated_version_number(build_number)
+
+  # Splitting with "-"
+  split_parts = build_number.split("-")
+  first_index = split_parts.first
+
+  # Splitting with "."
+  version_parts = first_index.split(".")
+  last_part = version_parts.last.to_i + 1
+
+  # Reconstructing the string
+  version_parts[-1] = last_part.to_s
+  build_number = version_parts.join(".")
+  build_number
+end

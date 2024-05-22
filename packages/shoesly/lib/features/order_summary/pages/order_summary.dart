@@ -15,7 +15,7 @@ class _OrderSummaryState extends State<OrderSummary> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Order Summary",
+          'Order Summary',
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w600,
@@ -35,7 +35,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Grand Total",
+                    'Grand Total',
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
@@ -44,7 +44,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                   ),
                   // const Spacer(),
                   Text(
-                    "\$725.00",
+                    '\$725.00',
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class _OrderSummaryState extends State<OrderSummary> {
                   ),
                   child: Center(
                     child: Text(
-                      "PAYMENT",
+                      'PAYMENT',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -115,7 +115,7 @@ class _OrderSummaryState extends State<OrderSummary> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Payment Detail",
+            'Payment Detail',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w700,
@@ -151,7 +151,7 @@ class _OrderSummaryState extends State<OrderSummary> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Order Details",
+            'Order Details',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w700,
@@ -204,7 +204,7 @@ class _OrderSummaryState extends State<OrderSummary> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Information",
+            'Information',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w700,

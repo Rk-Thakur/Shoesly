@@ -17,16 +17,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   List<ReviewModel> reviewList = [
     ReviewModel(
         name: 'Nolan Carder',
-        description:
-            'Perfect for keeping your feet dry and warm in damp conditions.'),
+        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
     ReviewModel(
         name: 'Maria Saris',
-        description:
-            'Perfect for keeping your feet dry and warm in damp conditions.'),
+        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
     ReviewModel(
         name: 'Gretchen Septimus',
-        description:
-            'Perfect for keeping your feet dry and warm in damp conditions.'),
+        description: 'Perfect for keeping your feet dry and warm in damp conditions.'),
   ];
 
   List<Color> color = [
@@ -85,7 +82,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Price",
+                      'Price',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w400,
@@ -94,7 +91,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     // const Spacer(),
                     Text(
-                      "\$235.00",
+                      '\$235.00',
                       style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
@@ -117,7 +114,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "ADD TO CART",
+                      'ADD TO CART',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -164,8 +161,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         final review = reviewList[index];
-                        return ReviewWidget(
-                            name: review.name, description: review.description);
+                        return ReviewWidget(name: review.name, description: review.description);
                       },
                       separatorBuilder: (context, index) {
                         return 30.verticalSpace;
@@ -175,8 +171,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 30.verticalSpace,
                 GestureDetector(
                   onTap: () {
-                    Utilities.pushNamed(
-                        context, ShoeslyRoutes.productReviewScreen);
+                    Utilities.pushNamed(context, ShoeslyRoutes.productReviewScreen);
                   },
                   child: Container(
                     height: 50.h,
@@ -193,7 +188,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "SEE ALL REVIEW",
+                        'SEE ALL REVIEW',
                         style: TextStyle(
                           color: const Color(0xff101010),
                           fontSize: 14.sp,
@@ -236,9 +231,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: Text(
                 "Engineered to crush any movement-based\nworkout, these On sneakers enhance the label's\noriginal Cloud sneaker with cutting edge\ntechnologies for a pair. ",
                 style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xff6F6F6F)),
+                    fontSize: 16.sp, fontWeight: FontWeight.w400, color: const Color(0xff6F6F6F)),
               ),
             ),
           )
@@ -284,22 +277,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       height: 50.h,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: index == tappedSized
-                              ? Colors.black
-                              : Colors.white,
+                          color: index == tappedSized ? Colors.black : Colors.white,
                           border: Border.all(
                             width: 2.sp,
-                            color: index == tappedSized
-                                ? Colors.black
-                                : const Color(0xffE7E7E7),
+                            color: index == tappedSized ? Colors.black : const Color(0xffE7E7E7),
                           )),
                       child: Center(
                         child: Text(
                           sizes,
                           style: TextStyle(
-                            color: index == tappedSized
-                                ? Colors.white
-                                : const Color(0xff6F6F6F),
+                            color: index == tappedSized ? Colors.white : const Color(0xff6F6F6F),
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w700,
                             letterSpacing: .1,
@@ -332,7 +319,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Jordan 1 Retro High Tie Dye",
+              'Jordan 1 Retro High Tie Dye',
               style: TextStyle(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w700,
@@ -357,7 +344,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "4.5",
+                        '4.5',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                         ),
@@ -445,8 +432,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             color: colorType,
                           ),
                           child: index == tappedIndex
-                              ? Icon(Icons.check,
-                                  size: 16.sp, color: Colors.white)
+                              ? Icon(Icons.check, size: 16.sp, color: Colors.white)
                               : null,
                         ),
                       );
@@ -512,7 +498,7 @@ class ReviewWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Today",
+                          'Today',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w300,
@@ -575,9 +561,7 @@ class StarRating extends StatelessWidget {
       children: List.generate(5, (index) {
         return Icon(
           index < rating ? Icons.star : Icons.star_border,
-          color: index < rating
-              ? const Color.fromARGB(255, 241, 218, 2)
-              : Colors.grey,
+          color: index < rating ? const Color.fromARGB(255, 241, 218, 2) : Colors.grey,
           size: 16.sp,
         );
       }),

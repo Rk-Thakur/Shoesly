@@ -24,21 +24,21 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
   ];
 
   final List<String> _sortByList = [
-    "Most Recent",
-    "Lowest Price",
-    "Highest Price",
+    'Most Recent',
+    'Lowest Price',
+    'Highest Price',
   ];
 
   final List<String> genderList = [
-    "Man",
-    "Woman",
-    "Unisex",
+    'Man',
+    'Woman',
+    'Unisex',
   ];
 
   final List<ColorModel> colorList = [
-    ColorModel(colorName: "Black", color: Colors.black),
-    ColorModel(colorName: "White", color: Colors.white),
-    ColorModel(colorName: "Red", color: Colors.red),
+    ColorModel(colorName: 'Black', color: Colors.black),
+    ColorModel(colorName: 'White', color: Colors.white),
+    ColorModel(colorName: 'Red', color: Colors.red),
   ];
   RangeValues _currentRangeValues = const RangeValues(200, 750);
 
@@ -46,7 +46,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Filter"),
+        title: const Text('Filter'),
         centerTitle: true,
       ),
       body: Padding(
@@ -91,7 +91,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                       )),
                   child: Center(
                     child: Text(
-                      "RESET(4)",
+                      'RESET(4)',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -114,7 +114,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      "APPLY",
+                      'APPLY',
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
@@ -140,7 +140,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Color",
+            'Color',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -172,9 +172,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapColor
-                              ? Colors.black
-                              : const Color(0xffE7E7E7),
+                          color: index == tapColor ? Colors.black : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Padding(
@@ -221,7 +219,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Gender",
+            'Gender',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -253,9 +251,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapGender ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapGender
-                              ? Colors.black
-                              : const Color(0xffE7E7E7),
+                          color: index == tapGender ? Colors.black : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
@@ -264,8 +260,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color:
-                              index == tapGender ? Colors.white : Colors.black,
+                          color: index == tapGender ? Colors.white : Colors.black,
                         ),
                       )),
                     ),
@@ -286,7 +281,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Sort By",
+            'Sort By',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -318,9 +313,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapIndex ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapIndex
-                              ? Colors.black
-                              : const Color(0xffE7E7E7),
+                          color: index == tapIndex ? Colors.black : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
@@ -329,8 +322,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color:
-                              index == tapIndex ? Colors.white : Colors.black,
+                          color: index == tapIndex ? Colors.white : Colors.black,
                         ),
                       )),
                     ),
@@ -351,7 +343,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Price Range",
+            'Price Range',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -391,7 +383,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Brands",
+            'Brands',
             style: TextStyle(
               fontSize: 18.sp,
               fontWeight: FontWeight.w600,
@@ -466,7 +458,7 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                             ),
                           ),
                           Text(
-                            "${brand.totalItems} Items",
+                            '${brand.totalItems} Items',
                             style: TextStyle(
                               fontSize: 12.sp,
                               fontWeight: FontWeight.w400,
