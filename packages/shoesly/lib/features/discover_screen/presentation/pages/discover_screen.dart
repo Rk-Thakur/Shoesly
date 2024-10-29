@@ -60,7 +60,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
           height: 12.h,
           fit: BoxFit.cover,
         );
-
       default:
         return Picture(
           source: Asset.images.nikeshade,

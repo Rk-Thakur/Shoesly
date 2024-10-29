@@ -22,4 +22,4 @@ scripts:
       description: Clean all packages
       exec: flutter clean  
 
-      
+  

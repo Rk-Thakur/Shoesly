@@ -57,4 +57,13 @@ class ShoeslyStrings {
   static const thirdOnboardTitle = 'Stay Ahead of the Game';
   static const thirdOnboardDescription =
       'Emphasizes staying ahead of the game with exclusive releases';
+
+  // Product Detail Screen
+  static const nolanCarder = 'Nolan Carder';
+  static const perfectForKeepingYour =
+      'Perfect for keeping your feet dry and warm in damp conditions.';
+  static const marisSaris = 'Maria Saris';
+  static const gretChenSpetimus = 'Gretchen Septimus';
+  static const addToCart = 'ADD TO CART';
+  static const seeAllReview = 'SEE ALL REVIEW';
 }

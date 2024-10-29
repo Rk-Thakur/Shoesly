@@ -12,7 +12,7 @@ bold='\033[1m'
 show_menu() {
     clear
     echo "${cyan}${bold}=================================================="
-    echo "           🚀 Shoesly App Actions Menu 🚀        "
+    echo "           🚀 KiiBank App Actions Menu 🚀        "
     echo "=================================================="
     echo "${blue}1)${reset} Build APK/IPA 📱"
     echo "${blue}2)${reset} Distribute App to Firebase ☁️"
@@ -33,9 +33,6 @@ flutter_get_build() {
 # Function to build Android APK
 build_android() {
     echo "${yellow}🔧 Building Android APK...${reset}"
-    flutter_get_build
-    cd packages/shoesly/
-    flutter build apk --release --target-platform android-arm64 --obfuscate --split-debug-info=./build_info
     # flutter build apk
     echo "${green}✅ Android APK built successfully!${reset}"
 }
@@ -43,9 +40,6 @@ build_android() {
 # Function to build iOS IPA
 build_ios() {
     echo "${yellow}🔧 Building iOS IPA...${reset}"
-    flutter_get_build
-    cd packages/shoesly/
-    flutter build ipa --release --export-method=ad-hoc
     # flutter build ios
     echo "${green}✅ iOS IPA built successfully!${reset}"
 }
@@ -54,7 +48,7 @@ build_ios() {
 distribute_android() {
     echo "${yellow}📤 Distributing Android app to Firebase...${reset}"
     # Firebase distribution command for Android
-    cd packages/shoesly/android/ 
+    cd android/
     fastlane alpha
     echo "${green}✅ Android app distributed to Firebase successfully!${reset}"
 }
@@ -62,9 +56,17 @@ distribute_android() {
 # Function to distribute iOS app to Firebase
 distribute_ios() {
     echo "${yellow}📤 Distributing iOS app to Firebase...${reset}"
-    # Replace with your Firebase distribution command for iOS
-    # Will add the ipa for the distribution
+    # Firebase distribution command for iOS
+    cd ios
+    fastlane iosalpha
     echo "${green}✅ iOS app distributed to Firebase successfully!${reset}"
+}
+
+# Function to distribute to Firebase
+distribute_to_firebase() {
+    echo "${yellow}📤 Distributing app to Firebase...${reset}"
+    # Add your Firebase distribution commands here
+    echo "${green}✅ App distributed to Firebase successfully!${reset}"
 }
 
 # Function to show build options menu

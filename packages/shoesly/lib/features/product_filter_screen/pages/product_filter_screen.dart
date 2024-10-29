@@ -172,7 +172,9 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapColor ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapColor
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Padding(
@@ -251,7 +253,9 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapGender ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapGender ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapGender
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
@@ -260,7 +264,8 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color: index == tapGender ? Colors.white : Colors.black,
+                          color:
+                              index == tapGender ? Colors.white : Colors.black,
                         ),
                       )),
                     ),
@@ -313,7 +318,9 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         color: index == tapIndex ? Colors.black : Colors.white,
                         borderRadius: BorderRadius.circular(100.sp),
                         border: Border.all(
-                          color: index == tapIndex ? Colors.black : const Color(0xffE7E7E7),
+                          color: index == tapIndex
+                              ? Colors.black
+                              : const Color(0xffE7E7E7),
                         ),
                       ),
                       child: Center(
@@ -322,7 +329,8 @@ class _ProductFilterScreenState extends State<ProductFilterScreen> {
                         style: TextStyle(
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          color: index == tapIndex ? Colors.white : Colors.black,
+                          color:
+                              index == tapIndex ? Colors.white : Colors.black,
                         ),
                       )),
                     ),

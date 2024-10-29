@@ -5,37 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000645">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000465">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: firebase_app_distribution_get_latest_release" time="2.041044">
+      <testcase classname="fastlane.lanes" name="1: Switch to android get_release_notes_from_user lane" time="0.000433">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: flutter clean" time="18.67076">
+      <testcase classname="fastlane.lanes" name="2: firebase_app_distribution_get_latest_release" time="2.468199">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: flutter pub get" time="5.394501">
+      <testcase classname="fastlane.lanes" name="3: Switch to android flutter_prepare lane" time="0.000597">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: dart fix --apply --code=unused_import" time="1.487159">
+      <testcase classname="fastlane.lanes" name="4: flutter clean" time="32.089714">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: flutter build apk --release --build-number=2 --build-name=1.0.0" time="192.982681">
+      <testcase classname="fastlane.lanes" name="5: flutter pub get" time="7.166087">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: firebase_app_distribution" time="14.570683">
+      <testcase classname="fastlane.lanes" name="6: dart fix --apply --code=unused_import" time="1.730442">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: dart format ." time="0.476655">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: flutter build apk --release --obfuscate --split-debug-info=./build_info  --build-number=9 --build-name=1.0.0" time="239.143061">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="9: firebase_app_distribution" time="16.991204">
         
       </testcase>
     

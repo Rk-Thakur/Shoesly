@@ -1,60 +1,12 @@
-
-# default_platform(:android)
-# platform :android do
-#   desc "Build a new alpha version"
-#   before_all do
-#       Dotenv.load ".env"
-#     end
-#   # This lane is responsible for building a new alpha version of the Android application.
-#   # It performs various tasks to prepare the alpha release, including cleaning the project,
-#   # fetching dependencies, generating necessary files, and building the APK.
-#   # Once the build process is complete, the APK is signed and prepared for distribution.
-#   # Additionally, versioning information is updated to ensure each alpha release has a
-#   # unique identifier.
-#   lane :alpha do |options|
-      
-#             latest_release = firebase_app_distribution_get_latest_release(
-#                 app: ENV['APP_ID'],
-#               service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE'])
-
-#             puts latest_release
-
-#             latest_version_name = latest_release[:displayVersion] 
-#             latest_build_number = (latest_release[:buildVersion].to_i + 1)
-
-
-
-#             sh "flutter clean"
-#             sh "flutter pub get"
-
-#             sh "dart fix --apply --code=unused_import"
-#             sh "flutter build apk --release --build-number=#{latest_build_number} --build-name=#{latest_version_name}"
-#             firebase_app_distribution(
-#               app: ENV['APP_ID'],
-#               groups: "shoesly",
-#               release_notes: 'Shoesly Bug Fixes',
-#               android_artifact_type: 'APK',
-#               android_artifact_path: ENV['ANDROID_ARTIFACT_PATH'],
-#               service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE'],
-#               firebase_cli_token: ENV['FIREBASE_TOKEN']
-#             )
-
-
-#   end
-# end
-
-
-
-
-default_platform(:android)
-platform :android do
+default_platform(:ios)
+platform :ios do
   desc "Build a new alpha version"
   before_all do
       Dotenv.load ".env"
       get_release_notes_from_user
     end
 
-  lane :alpha do 
+  lane :iosalpha do 
 
             latest_release = firebase_app_distribution_get_latest_release(
                 app: ENV['APP_ID'],
@@ -68,18 +20,19 @@ platform :android do
 
             flutter_prepare 
 
-            sh "flutter build apk --release --obfuscate --split-debug-info=./build_info  --build-number=#{latest_build_number} --build-name=#{latest_version_name}"
-            firebase_app_distribution(
-              app: ENV['APP_ID'],
-              groups: "shoesly",
-              release_notes: ENV['RELEASE_NOTES'],
-              android_artifact_type: 'APK',
-              android_artifact_path: ENV['ANDROID_ARTIFACT_PATH'],
-              service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE'],
-              firebase_cli_token: ENV['FIREBASE_TOKEN']
-            )
+            # # sh "flutter build ipa --release --export-method=ad-hoc --build-number=#{latest_build_number} --build-name=#{latest_version_name}"
+            # sh "flutter build ipa --release --export-method=ad-hoc"
+            # firebase_app_distribution(
+            #   app: ENV['APP_ID'],
+            #   groups: "shoesly",
+            #   ipa_path: "../build/ios/ipa/*.ipa"
+            #   release_notes: ENV['RELEASE_NOTES'],
+            #   service_credentials_file: ENV['SERVICE_CREDENTIALS_FILE']
+            # )
   end
 end
+
+
 
 
 # --- flutter_prepare Lane ---
@@ -90,7 +43,6 @@ lane :flutter_prepare do
   # Cleaning
   start_time = Time.now
   UI.message("🧹 Cleaning Flutter project...".yellow)
-  
   begin
     sh("flutter clean")
   rescue => ex
@@ -101,13 +53,15 @@ lane :flutter_prepare do
   # Dependencies
   start_time = Time.now
   UI.message("📦 Getting Flutter dependencies...".yellow)
-
+  progressbar = ProgressBar.create(title: "Progress", total: nil, format: "%t: |%B|") # Animated progress bar
   begin
-    sh("flutter pub get") 
+    sh("flutter pub get") do |status, output, pid|
+      progressbar.increment if status == 0
+    end
   rescue => ex
     UI.user_error!("Error during Flutter pub get: #{ex.message}")
   end
-
+  progressbar.finish
   UI.success("  ✅ Getting Flutter dependencies done in #{(Time.now - start_time).round(2)} seconds".green)
 
 
@@ -125,7 +79,7 @@ lane :flutter_prepare do
   start_time = Time.now
   UI.message("✨ Formatting Dart code...".yellow)
   begin
-    sh("dart format .")
+    sh("dart format lib")
   rescue => ex
     UI.user_error!("Error during Dart format: #{ex.message}")
   end

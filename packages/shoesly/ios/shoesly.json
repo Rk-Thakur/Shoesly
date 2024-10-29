@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "shoesly-77d25",
+  "private_key_id": "7c382efa41b58fb9eac5f28e828c36281ec07f96",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXRBjHu0N8+7EE\nHsFDgo2T7dcIYeSBGRxmRg4DosdmWwTGaykR2sxSZpAznybUlF9DThBC1lg7zO9e\n3ytT+apxxND4QXq9MKwvPEg7jjtndUg1l8mBm535BiNMQQIOWIt7XHBAAjIOVX/4\nm8qgcH9veTTfCgbwAaiI0nbepx4VluDfM06l80l+H8zB+UdUj1TJ8fLjLgU1JYKS\ny2fKNX2zbR5Kiocsz33Odk4fQ7LGUNbPtLtYvioU9BXSivld3WqlobBv6pdXGa1A\nPCcgVNZsQfCqTgeB8MmRxx9+OqKqduT7iFVctCNziJT3q8vCwexC6pxPk/gfAIIY\nKJPdBlVXAgMBAAECggEAB6N/Mtrgihe1tTUOYmfd2WoJ0VkMLn7DoeCIxaM7OY6A\nG7r+nHG1nrWiM5EmZ1bExsPS62UimIZ9UgeoCvoRIuSi/t5jodkq4MnFBgjlNBDG\noDo1iU9/9zrZnnir72iGRqkA3CKgP3wO1dGcNmTn8oum4VqCxiz3Q02Jhi3fRYzA\nlzBHX+GmyDnY/NN9o55YkK1PlqA1SOpJsMKk8R6WrX/AQapZSmGNX9Wf48oc5ttb\n8OdGNrA/TNIqwGEvPwiRbiNg3eXqAdOOfc64Ox972WSC+7O3IGz+zxSqpceLOECB\npavxp6KLWFhWNgneFHb0wbf7n+S93XVezzDRVM9MxQKBgQDGfmdkKMr7+3nupdxD\nwmrLvlryChI6FCjWklta00cPkPiAUv433fVhXM4V0bTseKMs2Xcq2E7Heq8JVKck\nKcSKml5y8Lwl29XMWv1qL7ycL1Vu8X023tcncI3YYraD/D7J8sxqD3y9y8bfp3Um\nXJ4l0lya74mGjYyzdf/sI/cMEwKBgQDDFvkfu+1sp4kJfc/bYKNNhTLPgHBizwaa\nhCTi8QLxyGImCZoVATOgpi4P5IMUWuK0gBEnnSLYXg2K2Cp8MSIpDKGSaLowXstW\ne5B/TTVVb+kJEsMPNG/nC6Tlm6zijeghXQDQw29m+pZ2qr/Ir1oFbiNi42WLqMt3\nVfTJyXyyLQKBgE6tYdwAk1zH9C/VDHbLRDuYK0JPHaRpwzox7wYUQtF3vBhZTSzl\nzNKXz5Q0eEtXEg6/8A1KigdlqKXBKTMbXy01PQTASUOUXK1Qz6vcWh1qYanFDMXI\nFG4snfzMO94bCORRWhccJmywrhaOsM/Q3FrPhCdhlRiBWOj1d8ipBM6DAoGAZoI3\nvNj+VE1j0DzvbxJEPIN0w1t1sjWd/qrYxvZk2a61A8+fytGq0wr+wRMNXTC0VqvE\nV9BVcuNYslALYt5eWLtuWoP08V2d8n9S2dEz6QS4qi/VlrOy6PBRYOR/3zs5ce5w\nc0F909pwHUJzK3wYDSpmJZvey5eR8c6UpULd5rECgYEAm/FnjAG2Of2A2MME+tf6\nFY0VNVlEjDb+avlRmy2Bqud6TxhKXPxmiO30JTHQqNm7s28kLcd4PfvdQbXAlV4Z\nfCjwtG4Y78l09/H8CUR4F2qTaVpa5P5+HcjZxEXhS2sozxtXZuN265Hw3FDORtWC\nX/S4D9+uiJwuSlyeNSg2hfk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "shoesly-77d25@appspot.gserviceaccount.com",
+  "client_id": "109191761180487223061",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/shoesly-77d25%40appspot.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

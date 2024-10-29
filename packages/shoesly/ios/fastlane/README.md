@@ -32,12 +32,12 @@ Get release notes from user input and store in ENV['RELEASE_NOTES']
 ----
 
 
-## Android
+## iOS
 
-### android alpha
+### ios iosalpha
 
 ```sh
-[bundle exec] fastlane android alpha
+[bundle exec] fastlane ios iosalpha
 ```
 
 Build a new alpha version
