@@ -1,5 +1,6 @@
 // Copyright (c) 2024. The Shoesly Authors. All rights reserved.
 
+import 'package:device_preview/device_preview.dart';
 import 'package:shoesly/main.g.dart';
 
 class ShoeslyApp extends StatelessWidget {
@@ -16,24 +17,27 @@ class ShoeslyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
+            builder: DevicePreview.appBuilder,
             onGenerateTitle: (context) => '',
             title: 'Shoesly',
             theme: ThemeData(
-                useMaterial3: true,
-                floatingActionButtonTheme: const FloatingActionButtonThemeData(
-                  backgroundColor: Colors.black,
-                ),
-                textTheme: GoogleFonts.urbanistTextTheme(
-                  Theme.of(context).textTheme,
-                ),
-                textButtonTheme: TextButtonThemeData(
-                    style: TextButton.styleFrom(
+              useMaterial3: true,
+              floatingActionButtonTheme: const FloatingActionButtonThemeData(
+                backgroundColor: Colors.black,
+              ),
+              textTheme: GoogleFonts.urbanistTextTheme(
+                Theme.of(context).textTheme,
+              ),
+              textButtonTheme: TextButtonThemeData(
+                style: TextButton.styleFrom(
                   foregroundColor: Colors.black,
-                )),
-                sliderTheme: const SliderThemeData(
-                  thumbColor: Colors.black,
-                  activeTrackColor: Colors.black,
-                )),
+                ),
+              ),
+              sliderTheme: const SliderThemeData(
+                thumbColor: Colors.black,
+                activeTrackColor: Colors.black,
+              ),
+            ),
             onGenerateRoute: ShoeslyRouter.onGenerateRoute,
           );
         },
