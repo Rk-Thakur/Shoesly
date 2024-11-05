@@ -43,3 +43,23 @@ jobs:
           artifacts: "packages/shoesly/build/app/outputs/flutter-apk/app-release.apk"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
+
+      - name: Build the flutter web app
+        if:  matrix.project == 'packages/shoesly'
+        working-directory: ${{ matrix.project}}
+        run: flutter build web
+
+      - name: Move build project output to docs folder
+        run: |
+          rm -rf docs
+          mv packages/shoesly/build/web packages/shoesly/docs
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "tranjan638@gmail.com"
+          git config --local user.name "Rk-Thakur"
+          git add docs
+          git commit -m "Update GitHub Pages with new build"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }} 
