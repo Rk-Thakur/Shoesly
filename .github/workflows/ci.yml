@@ -51,7 +51,7 @@ jobs:
 
       - name: Move build project output to docs folder
         run: |
-          rm -rf packages/shoesly/docs
+          # rm -rf packages/shoesly/docs
           mv packages/shoesly/build/web packages/shoesly/docs
 
       - name: Commit and push changes
