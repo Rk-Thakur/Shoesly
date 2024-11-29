@@ -128,8 +128,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       Badge(
                         child: IconButton(
                           onPressed: () {
-                            Utilities.pushNamed(
-                                context, ShoeslyRoutes.cartScreen);
+                            Utilities.pushNamed(context, ShoeslyRoutes.cartScreen);
                           },
                           icon: Icon(
                             size: 24.sp,
@@ -139,8 +138,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       ),
                       IconButton(
                           onPressed: () {
-                            Utilities.pushNamed(
-                                context, ShoeslyRoutes.formScreen);
+                            Utilities.pushNamed(context, ShoeslyRoutes.formScreen);
                           },
                           icon: const Icon(Icons.add)),
                     ],
@@ -154,20 +152,16 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 children: [
                   _brandList(),
                   30.verticalSpace,
-                  Expanded(child:
-                      BlocBuilder<DiscoverScreenBloc, DiscoverScreenState>(
+                  Expanded(child: BlocBuilder<DiscoverScreenBloc, DiscoverScreenState>(
                     builder: (context, state) {
-                      if (state.productListStatus ==
-                          ProductListStatus.loading) {
+                      if (state.productListStatus == ProductListStatus.loading) {
                         return const Center(
                           child: CircularProgressIndicator.adaptive(),
                         );
-                      } else if (state.productListStatus ==
-                          ProductListStatus.fetched) {
+                      } else if (state.productListStatus == ProductListStatus.fetched) {
                         return state.productList.isEmpty
                             ? Center(
-                                child: Text('No Brand Listed!!',
-                                    style: GoogleFonts.urbanist()),
+                                child: Text('No Brand Listed!!', style: GoogleFonts.urbanist()),
                               )
                             : RefreshIndicator(
                                 onRefresh: () async {
@@ -176,8 +170,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                 child: GridView.builder(
                                     padding: EdgeInsets.zero,
                                     itemCount: state.productList.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 2,
                                       mainAxisExtent: 240.h,
                                       crossAxisSpacing: 8.0,
@@ -193,8 +186,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                             arguments: ProductDetailParams(
                                               imageList: product.productImage,
                                               size: product.productSize,
-                                              productDescription:
-                                                  product.productDescription,
+                                              productDescription: product.productDescription,
                                               productName: product.productName,
                                               productId: product.productId,
                                               price: product.productPrice,
@@ -210,36 +202,27 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                 width: 150.w,
                                                 height: 170.h,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.black45
-                                                      .withOpacity(.10),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.sp),
+                                                  color: Colors.black45.withOpacity(.10),
+                                                  borderRadius: BorderRadius.circular(20.sp),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      15.0),
+                                                  padding: const EdgeInsets.all(15.0),
                                                   child: Column(
                                                     children: [
                                                       Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: getBrandIcon(
-                                                            product.brandName),
+                                                        alignment: Alignment.topLeft,
+                                                        child: getBrandIcon(product.brandName),
                                                       ),
                                                       4.verticalSpace,
                                                       CachedNetworkImage(
-                                                        imageUrl: product
-                                                            .productImage[0],
+                                                        imageUrl: product.productImage[0],
                                                         height: 124.h,
                                                         width: double.infinity,
                                                         fit: BoxFit.fill,
-                                                        placeholder:
-                                                            (context, url) {
+                                                        placeholder: (context, url) {
                                                           return const Center(
-                                                            child:
-                                                                CircularProgressIndicator
-                                                                    .adaptive(),
+                                                            child: CircularProgressIndicator
+                                                                .adaptive(),
                                                           );
                                                         },
                                                       ),
@@ -252,17 +235,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                 width: 150.w,
                                                 height: 64.h,
                                                 child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text(product.productName,
-                                                        style: GoogleFonts
-                                                            .urbanist(
+                                                        style: GoogleFonts.urbanist(
                                                           textStyle: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                            fontWeight: FontWeight.w600,
                                                             fontSize: 12.sp,
                                                           ),
                                                         )),
@@ -273,38 +252,25 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                         children: [
                                                           Icon(
                                                             Icons.star,
-                                                            color:
-                                                                Colors.yellow,
+                                                            color: Colors.yellow,
                                                             size: 12.sp,
                                                           ),
                                                           5.horizontalSpace,
                                                           Text('4.5',
-                                                              style: GoogleFonts
-                                                                  .urbanist(
-                                                                textStyle:
-                                                                    TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize:
-                                                                      11.sp,
-                                                                  color: const Color(
-                                                                      0xff101010),
+                                                              style: GoogleFonts.urbanist(
+                                                                textStyle: TextStyle(
+                                                                  fontWeight: FontWeight.w700,
+                                                                  fontSize: 11.sp,
+                                                                  color: const Color(0xff101010),
                                                                 ),
                                                               )),
                                                           5.horizontalSpace,
                                                           Text('(1024 Reviews)',
-                                                              style: GoogleFonts
-                                                                  .urbanist(
-                                                                textStyle:
-                                                                    TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                  fontSize:
-                                                                      11.sp,
-                                                                  color: const Color(
-                                                                      0xffB7B7B7),
+                                                              style: GoogleFonts.urbanist(
+                                                                textStyle: TextStyle(
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: 11.sp,
+                                                                  color: const Color(0xffB7B7B7),
                                                                 ),
                                                               ))
                                                         ],
@@ -314,13 +280,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                                         height: 24.h,
                                                         child: Text(
                                                           '\$ ${product.productPrice.toStringAsFixed(2)}',
-                                                          style: GoogleFonts
-                                                              .urbanist(
-                                                            textStyle:
-                                                                TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
+                                                          style: GoogleFonts.urbanist(
+                                                            textStyle: TextStyle(
+                                                              fontWeight: FontWeight.w700,
                                                               fontSize: 16.sp,
                                                             ),
                                                           ),
@@ -334,8 +296,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                                       );
                                     }),
                               );
-                      } else if (state.productListStatus ==
-                          ProductListStatus.failure) {
+                      } else if (state.productListStatus == ProductListStatus.failure) {
                         return Center(
                           child: Text(state.message),
                         );
@@ -369,8 +330,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   tappedIndex = index;
                 });
                 if (index == 0) {
-                  BlocProvider.of<DiscoverScreenBloc>(context)
-                      .add(GetAllDiscoverEvent());
+                  BlocProvider.of<DiscoverScreenBloc>(context).add(GetAllDiscoverEvent());
                 } else {
 // for the brand  names
                   BlocProvider.of<DiscoverScreenBloc>(context)
@@ -383,9 +343,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                   fontWeight: FontWeight.w700,
                   fontSize: 24.sp,
                   letterSpacing: .2,
-                  color: index == tappedIndex
-                      ? const Color(0xff101010)
-                      : const Color(0xffB7B7B7),
+                  color: index == tappedIndex ? const Color(0xff101010) : const Color(0xffB7B7B7),
                 ),
               ),
             ),

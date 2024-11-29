@@ -13,7 +13,7 @@ Future<void> main() async {
   ]);
 
   //Setup for the enviroment
-  AppEnviroment.setUpEnv(Flavor.dev);
+  AppEnviroment.setUpEnv(Flavor.staging);
   setUpServiceLocator();
 
   await Firebase.initializeApp(

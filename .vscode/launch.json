@@ -1,0 +1,71 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        // Development Flavor
+        {
+            "name": "Shoesly (development - debug)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "development",
+            ],
+            "program": "packages/shoesly/lib/main_development.dart"
+        },
+        {
+            "name": "Shoesly (development - release)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "development",
+                "--release"
+            ],
+            "program": "packages/shoesly/lib/main_development.dart"
+        },
+        // Staging Flavor
+        {
+            "name": "Shoesly (Staging - debug)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "staging",
+            ],
+            "program": "packages/shoesly/lib/main_staging.dart"
+        },
+        {
+            "name": "Shoesly (Staging - release)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "staging",
+                "--release"
+            ],
+            "program": "packages/shoesly/lib/main_staging.dart"
+        },
+        // Production Flavor
+        {
+            "name": "Shoesly (production - debug)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "production"
+            ],
+            "program": "packages/shoesly/lib/main_production.dart"
+        },
+        {
+            "name": "Shoesly (production - release)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--flavor",
+                "production",
+                "--release"
+            ],
+            "program": "packages/shoesly/lib/main_production.dart"
+        }
+    ]
+}
