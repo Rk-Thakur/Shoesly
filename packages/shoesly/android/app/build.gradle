@@ -66,6 +66,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "default"
+    productFlavors{
+        development{
+            dimension "default"
+            applicationIdSuffix  ""
+            resValue "string", "app_name" , "Shoesly_DEV"
+        }
+        staging{
+            dimension "default"
+            applicationIdSuffix  ""
+            resValue "string", "app_name" , "Shoesly_QA"
+        }
+        production{
+            dimension "default"
+            applicationIdSuffix  ''
+            resValue "string", "app_name" , "Shoesly"
+        }
+    }
 }
 
 flutter {
