@@ -12,7 +12,7 @@ bold='\033[1m'
 show_menu() {
     clear
     echo "${cyan}${bold}=================================================="
-    echo "           🚀 KiiBank App Actions Menu 🚀        "
+    echo "           🚀 Shoesly App Actions Menu 🚀        "
     echo "=================================================="
     echo "${blue}1)${reset} Build APK/IPA 📱"
     echo "${blue}2)${reset} Distribute App to Firebase ☁️"
@@ -33,7 +33,7 @@ flutter_get_build() {
 # Function to build Android APK
 build_android() {
     echo "${yellow}🔧 Building Android APK...${reset}"
-    # flutter build apk
+    flutter build apk
     echo "${green}✅ Android APK built successfully!${reset}"
 }
 
@@ -48,7 +48,7 @@ build_ios() {
 distribute_android() {
     echo "${yellow}📤 Distributing Android app to Firebase...${reset}"
     # Firebase distribution command for Android
-    cd android/
+    cd packages/shoesly/android/fastlane
     fastlane alpha
     echo "${green}✅ Android app distributed to Firebase successfully!${reset}"
 }
@@ -57,7 +57,7 @@ distribute_android() {
 distribute_ios() {
     echo "${yellow}📤 Distributing iOS app to Firebase...${reset}"
     # Firebase distribution command for iOS
-    cd ios
+    cd packages/shoesly/ios
     fastlane iosalpha
     echo "${green}✅ iOS app distributed to Firebase successfully!${reset}"
 }

@@ -76,8 +76,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final reviewList =
-        context.watch<ProductDetailScreenBloc>().state.commentList;
+    final reviewList = context.watch<ProductDetailScreenBloc>().state.commentList;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -202,8 +201,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         isScrollControlled: true,
         context: context,
         builder: (context) {
-          return BlocListener<ProductDetailScreenBloc,
-              ProductDetailScreenState>(
+          return BlocListener<ProductDetailScreenBloc, ProductDetailScreenState>(
             listener: (context, state) {
               if (state.commentStatus == CommentStatus.commented) {
                 eventController.clear();
@@ -220,8 +218,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   child: IntrinsicHeight(
                     child: SizedBox(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         child: Column(
                           children: [
                             15.verticalSpace,
@@ -274,9 +271,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   child: Icon(
                                     Icons.star,
                                     size: 40.0,
-                                    color: index < _selectedStar
-                                        ? Colors.yellow
-                                        : Colors.grey,
+                                    color: index < _selectedStar ? Colors.yellow : Colors.grey,
                                   ),
                                 );
                               }),
@@ -287,12 +282,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               child: GestureDetector(
                                 onTap: () {
                                   if (eventController.text.isNotEmpty) {
-                                    final CommentParams commentParams =
-                                        CommentParams(
+                                    final CommentParams commentParams = CommentParams(
                                       review: eventController.text.trim(),
                                       star: _selectedStar,
-                                      productId:
-                                          widget.productDetailParams.productId,
+                                      productId: widget.productDetailParams.productId,
                                     );
 
                                     context.read<ProductDetailScreenBloc>().add(
@@ -395,11 +388,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             GestureDetector(
-                              onTap:
-                                  (int.tryParse(quantityController.text) ?? 0) <
-                                          1
-                                      ? null
-                                      : _decrement,
+                              onTap: (int.tryParse(quantityController.text) ?? 0) < 1
+                                  ? null
+                                  : _decrement,
                               child: Container(
                                 width: 24.w,
                                 height: 24.h,
@@ -462,8 +453,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     color: const Color(0xffB7B7B7),
                                   ),
                                 ),
-                                StatefulBuilder(builder: (BuildContext context,
-                                    StateSetter setState) {
+                                StatefulBuilder(
+                                    builder: (BuildContext context, StateSetter setState) {
                                   return Text(
                                     '\$${widget.productDetailParams.price * int.parse(
                                           quantityController.text,
@@ -486,24 +477,19 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     context: context,
                                     isDismissible: true,
                                     isScrollControlled: true,
-                                    builder: (context) =>
-                                        addedToCartBottomSheet(context));
+                                    builder: (context) => addedToCartBottomSheet(context));
                               }
                             },
                             child: Expanded(
                               child: GestureDetector(
                                 onTap: () {
                                   final CartEntity cartEntity = CartEntity(
-                                      productImage: widget
-                                          .productDetailParams.imageList[0],
-                                      productName: widget
-                                          .productDetailParams.productName,
-                                      productPrice:
-                                          widget.productDetailParams.price,
-                                      quantity:
-                                          int.parse(quantityController.text));
-                                  BlocProvider.of<CartScreenBloc>(context).add(
-                                      AddCartEvent(cartEntity: cartEntity));
+                                      productImage: widget.productDetailParams.imageList[0],
+                                      productName: widget.productDetailParams.productName,
+                                      productPrice: widget.productDetailParams.price,
+                                      quantity: int.parse(quantityController.text));
+                                  BlocProvider.of<CartScreenBloc>(context)
+                                      .add(AddCartEvent(cartEntity: cartEntity));
                                 },
                                 child: Container(
                                   height: 54.h,
@@ -800,9 +786,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             child: Text(
               description,
               style: TextStyle(
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xff6F6F6F)),
+                  fontSize: 12.sp, fontWeight: FontWeight.w400, color: const Color(0xff6F6F6F)),
             ),
           )
         ],
@@ -848,22 +832,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       height: 50.h,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: index == tappedSized
-                              ? Colors.black
-                              : Colors.white,
+                          color: index == tappedSized ? Colors.black : Colors.white,
                           border: Border.all(
                             width: 2.sp,
-                            color: index == tappedSized
-                                ? Colors.black
-                                : const Color(0xffE7E7E7),
+                            color: index == tappedSized ? Colors.black : const Color(0xffE7E7E7),
                           )),
                       child: Center(
                         child: Text(
                           sizes.toString(),
                           style: TextStyle(
-                            color: index == tappedSized
-                                ? Colors.white
-                                : const Color(0xff6F6F6F),
+                            color: index == tappedSized ? Colors.white : const Color(0xff6F6F6F),
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w700,
                             letterSpacing: .1,
@@ -1046,8 +1024,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             color: colorType,
                           ),
                           child: index == tappedIndex
-                              ? Icon(Icons.check,
-                                  size: 16.sp, color: Colors.white)
+                              ? Icon(Icons.check, size: 16.sp, color: Colors.white)
                               : null,
                         ),
                       );
