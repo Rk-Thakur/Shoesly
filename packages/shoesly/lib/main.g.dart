@@ -48,3 +48,4 @@ export 'package:shoesly/features/product_detail_screen/presentation/bloc/product
 export 'package:shoesly/features/product_review_screen/pages/params/review_params.dart';
 export 'package:shoesly_core/extensions/shoesly_extensions.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:shoesly/core/services/logger_navigation_observer.dart';

@@ -16,6 +16,9 @@ class ShoeslyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+            navigatorObservers: [
+              LoggerNavigationServiceObserver(),
+            ],
             debugShowCheckedModeBanner: false,
             builder: DevicePreview.appBuilder,
             onGenerateTitle: (context) => '',
