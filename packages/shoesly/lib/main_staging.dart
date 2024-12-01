@@ -1,5 +1,7 @@
 // Copyright (c) 2023. The Shoesly Authors. All rights reserved.
 
+import 'dart:developer';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:shoesly/core/injector/service_locator.dart';
 import 'package:shoesly/core/widgets/error_widget.dart';
@@ -17,8 +19,16 @@ Future<void> main() async {
   setUpServiceLocator();
 
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: FirebaseConfigOptions.stagingPlatform,
   );
+
+  final options = Firebase.app().options;
+  log('Firebase Project ID: ${options.projectId}');
+  log('Firebase API Key: ${options.apiKey}');
+  log('Firebase Detils ${options.toString()}');
+
+  // Notification Service
+  await FirebaseNotificationServices().initNotifications();
 
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
