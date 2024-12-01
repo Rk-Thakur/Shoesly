@@ -5,7 +5,7 @@ on:
 
   push:
     branches:
-      - "shoesly"
+      - "shoeslyflavor"
 
 name: "Build and Release"
 jobs:
