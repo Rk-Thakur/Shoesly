@@ -49,3 +49,5 @@ export 'package:shoesly/features/product_review_screen/pages/params/review_param
 export 'package:shoesly_core/extensions/shoesly_extensions.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:shoesly/core/services/logger_navigation_observer.dart';
+export 'package:shoesly/firebase_config.dart';
+export 'package:shoesly/core/services/firebase_notification_services.dart';

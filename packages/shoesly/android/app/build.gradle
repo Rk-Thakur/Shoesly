@@ -49,7 +49,7 @@ android {
         applicationId "com.example.shoesly"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 25
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -70,12 +70,12 @@ android {
     productFlavors{
         development{
             dimension "default"
-            applicationIdSuffix  ""
+            applicationIdSuffix  ".dev"
             resValue "string", "app_name" , "Shoesly_DEV"
         }
         staging{
             dimension "default"
-            applicationIdSuffix  ""
+            applicationIdSuffix  ".qa"
             resValue "string", "app_name" , "Shoesly_QA"
         }
         production{
@@ -86,11 +86,27 @@ android {
     }
 }
 
+// Specify the google-services.json path for each flavor
+android.applicationVariants.all { variant ->
+    def flavorName = variant.flavorName
+    def googleServicesFile = "src/${flavorName}/google-services.json"
+
+    variant.mergeResources.doLast {
+        copy {
+            from googleServicesFile
+            into "${buildDir}/intermediates/merged_assets/${variant.dirName}/out"
+        }
+    }
+}
+
 flutter {
     source '../..'
 }
 
 dependencies {
+        implementation platform('com.google.firebase:firebase-bom:33.6.0')
         implementation "androidx.multidex:multidex:2.0.1" 
 
 }
+
+
