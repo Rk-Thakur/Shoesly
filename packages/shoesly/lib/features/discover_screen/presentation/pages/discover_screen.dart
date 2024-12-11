@@ -81,17 +81,19 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         ),
         onPressed: () {
           Utilities.pushNamed(context, ShoeslyRoutes.productFilterScreen);
+
         },
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
-        label: Text(ShoeslyStrings.filter,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.urbanist(
-              textStyle: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            )),
+        // label: Text(ShoeslyStrings.filter,
+        //     textAlign: TextAlign.center,
+        //     style: GoogleFonts.urbanist(
+        //       textStyle: TextStyle(
+        //         fontSize: 14.sp,
+        //         fontWeight: FontWeight.w700,
+        //       ),
+        //     )),
+        label: const Text('Verify Sentry Setup'),
         icon: const Badge(
           child: Icon(
             Icons.settings,
@@ -108,6 +110,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             SizedBox(
               height: MediaQuery.of(context).padding.top,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

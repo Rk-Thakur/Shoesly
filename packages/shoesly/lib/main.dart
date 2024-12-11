@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:device_preview/device_preview.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shoesly/core/injector/service_locator.dart';
 import 'package:shoesly/core/widgets/error_widget.dart';
 import 'package:shoesly/env.dart';
@@ -12,84 +13,37 @@ Future<void> firebaseMain(Flavor flavor) async {
     DeviceOrientation.portraitUp,
   ]);
 
-  //Setup for the enviroment
-  AppEnviroment.setUpEnv(flavor);
+//sentry for monitor
+  await SentryFlutter.init( (options) {
+options.dsn = 'https://1e71a6849d70edf20c349ce62e285e06@o4508450931408896.ingest.de.sentry.io/4508450940584016';
+      options.tracesSampleRate = 0.01;  // Adjust as needed
+      options.environment = flavor.toString(); // Set environment as flavor
+      options.release = 'shoesly@1.0.0'; // Replace with your app version
+    },
+    appRunner: () async{
+        //Setup for the enviroment
+        AppEnviroment.setUpEnv(flavor);
 
-  //Service  Locator
-  setUpServiceLocator();
+        //Service  Locator
+        setUpServiceLocator();
 
-  //Flavor
-  switch (flavor) {
-    case Flavor.dev:
-      await Firebase.initializeApp(
-        name: 'Shoesly Development',
-        options: FirebaseConfigOptions.developmentPlatform,
-      );
-      final options = Firebase.app().options;
-      log('Firebase Project ID: ${options.projectId}');
-      log('Firebase API Key: ${options.apiKey}');
-      log('Firebase Detils ${options.toString()}');
-      break;
+        //Flavor
+        await _intializeFirebase(flavor);
 
-    case Flavor.staging:
-      await Firebase.initializeApp(
-        name: 'Shoesly Staging',
-        options: FirebaseConfigOptions.stagingPlatform,
-      );
+        // Notification Service
+        await FirebaseNotificationServices().initNotifications();
 
-      final options = Firebase.app().options;
-      log('Firebase Project ID: ${options.projectId}');
-      log('Firebase API Key: ${options.apiKey}');
-      log('Firebase Detils ${options.toString()}');
-      break;
-
-    case Flavor.prod:
-      await Firebase.initializeApp(
-        name: 'Shoesly Production',
-        options: FirebaseConfigOptions.productionPlatform,
-      );
-
-      final options = Firebase.app().options;
-      log('Firebase Project ID: ${options.projectId}');
-      log('Firebase API Key: ${options.apiKey}');
-      log('Firebase Detils ${options.toString()}');
-      break;
-
-    default:
-      await Firebase.initializeApp(
-        options: FirebaseConfigOptions.developmentPlatform,
-      );
-      final options = Firebase.app().options;
-      log('Firebase Project ID: ${options.projectId}');
-      log('Firebase API Key: ${options.apiKey}');
-      log('Firebase Detils ${options.toString()}');
-      break;
-  }
-
-  // Notification Service
-  await FirebaseNotificationServices().initNotifications();
-
-  //Flutter Error Widget
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.dumpErrorToConsole(details);
-    runApp(ErrorWidgetClass(details));
-  };
+        //Flutter Error Widget
+        _setErrorHandlers();
 
 
-  // Flutter Error on Crashlytics
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
+          final appDocumentDir = await getApplicationDocumentsDirectory();
+          Hive.init(appDocumentDir.path);
 
-  final appDocumentDir = await getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
+          await Hive.openBox<bool>('onBoardBox');
+          await TokenService().initializeHive();
 
-  await Hive.openBox<bool>('onBoardBox');
-  await TokenService().initializeHive();
-
-  runApp(DevicePreview(
+          runApp(DevicePreview(
     backgroundColor: Colors.white,
 
     enabled: true,
@@ -150,4 +104,71 @@ Future<void> firebaseMain(Flavor flavor) async {
     ],
     builder: (context) => const ShoeslyApp(),
   ));
+    }
+    );
+}
+
+void _setErrorHandlers() {
+  //Flutter Error Widget
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.dumpErrorToConsole(details);
+    runApp(ErrorWidgetClass(details));
+  };
+  
+  // Flutter Error on Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+}
+
+Future<void> _intializeFirebase(Flavor flavor) async {
+  //Flavor
+  switch (flavor) {
+    case Flavor.dev:
+      await Firebase.initializeApp(
+        name: 'Shoesly Development',
+        options: FirebaseConfigOptions.developmentPlatform,
+      );
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+  
+    case Flavor.staging:
+      await Firebase.initializeApp(
+        name: 'Shoesly Staging',
+        options: FirebaseConfigOptions.stagingPlatform,
+      );
+  
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+  
+    case Flavor.prod:
+      await Firebase.initializeApp(
+        name: 'Shoesly Production',
+        options: FirebaseConfigOptions.productionPlatform,
+      );
+  
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+  
+    default:
+      await Firebase.initializeApp(
+        options: FirebaseConfigOptions.developmentPlatform,
+      );
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+  }
 }
