@@ -1,31 +1,88 @@
-// Copyright (c) 2023. The Shoesly Authors. All rights reserved.
+import 'dart:developer';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:shoesly/core/injector/service_locator.dart';
 import 'package:shoesly/core/widgets/error_widget.dart';
+import 'package:shoesly/env.dart';
 import 'package:shoesly/main.g.dart';
 
-Future<void> main() async {
+Future<void> firebaseMain(Flavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  //Setup for the enviroment
+  AppEnviroment.setUpEnv(flavor);
+
+  //Service  Locator
   setUpServiceLocator();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  //Flavor
+  switch (flavor) {
+    case Flavor.dev:
+      await Firebase.initializeApp(
+        name: 'Shoesly Development',
+        options: FirebaseConfigOptions.developmentPlatform,
+      );
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
 
+    case Flavor.staging:
+      await Firebase.initializeApp(
+        name: 'Shoesly Staging',
+        options: FirebaseConfigOptions.stagingPlatform,
+      );
+
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+
+    case Flavor.prod:
+      await Firebase.initializeApp(
+        name: 'Shoesly Production',
+        options: FirebaseConfigOptions.productionPlatform,
+      );
+
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+
+    default:
+      await Firebase.initializeApp(
+        options: FirebaseConfigOptions.developmentPlatform,
+      );
+      final options = Firebase.app().options;
+      log('Firebase Project ID: ${options.projectId}');
+      log('Firebase API Key: ${options.apiKey}');
+      log('Firebase Detils ${options.toString()}');
+      break;
+  }
+
+  // Notification Service
+  await FirebaseNotificationServices().initNotifications();
+
+  //Flutter Error Widget
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
     runApp(ErrorWidgetClass(details));
   };
 
+
+  // Flutter Error on Crashlytics
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   PlatformDispatcher.instance.onError = (error, stack) {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
   final appDocumentDir = await getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
 

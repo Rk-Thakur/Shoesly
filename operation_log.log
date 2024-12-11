@@ -1,0 +1,39 @@
+2024-12-11 11:53:16 - =====================================
+2024-12-11 11:53:16 - Starting branch deletion operation...
+2024-12-11 11:53:16 - =====================================
+2024-12-11 11:53:20 - ❌ Failed to delete branch 'testingshoesly'
+2024-12-11 11:53:23 - ❌ Failed to delete branch 'testingshoesly1'
+2024-12-11 11:53:25 - ❌ Failed to delete branch 'testingshoesly2'
+2024-12-11 11:53:28 - ❌ Failed to delete branch 'testingshoesly3'
+2024-12-11 11:53:30 - ❌ Failed to delete branch 'testingshoesly4'
+2024-12-11 11:53:33 - ❌ Failed to delete branch 'testingshoesly5'
+2024-12-11 11:53:33 - =====================================
+2024-12-11 11:53:33 - All operations completed.
+2024-12-11 11:53:33 - Deleted branches: 0 | Failed: 6
+2024-12-11 11:53:33 - =====================================
+2024-12-11 11:56:30 - =====================================
+2024-12-11 11:56:30 - Starting branch deletion operation...
+2024-12-11 11:56:30 - =====================================
+2024-12-11 11:57:51 - Operation cancelled by user.
+2024-12-11 12:01:06 - =====================================
+2024-12-11 12:01:06 - Starting branch deletion operation...
+2024-12-11 12:01:06 - =====================================
+2024-12-11 12:01:12 - ✅ Deleted branch 'testing'
+2024-12-11 12:01:16 - ✅ Deleted branch 'testing1'
+2024-12-11 12:01:19 - ✅ Deleted branch 'testing2'
+2024-12-11 12:01:22 - ✅ Deleted branch 'testing4'
+2024-12-11 12:01:25 - ✅ Deleted branch 'testing5'
+2024-12-11 12:01:25 - =====================================
+2024-12-11 12:01:25 - All operations completed.
+2024-12-11 12:01:25 - Deleted branches: 5 | Failed: 0
+2024-12-11 12:01:25 - =====================================
+2024-12-11 12:01:45 - =====================================
+2024-12-11 12:01:45 - Starting branch deletion operation...
+2024-12-11 12:01:45 - =====================================
+2024-12-11 12:01:46 - ❌ Failed to delete branch '[?1049h[1;57r(B[m[4l[?7h[?1h=[?1000h[39;49m[?1000l[39;49m(B[m[57;1H[?1049l[?1l>'
+2024-12-11 12:01:46 - =====================================
+2024-12-11 12:01:46 - All operations completed.
+2024-12-11 12:01:46 - Deleted branches: 0 | Failed: 1
+2024-12-11 12:01:46 - =====================================
+2024-12-11 17:28:09 - Operation cancelled by user.
+2024-12-11 23:57:08 - Operation cancelled by user.

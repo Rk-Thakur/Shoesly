@@ -140,7 +140,19 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                           onPressed: () {
                             Utilities.pushNamed(context, ShoeslyRoutes.formScreen);
                           },
-                          icon: const Icon(Icons.add)),
+                          icon: const Icon(Icons.add),),
+                  IconButton(
+                    icon: const Icon(Icons.info_outline),
+                    onPressed: () {
+                      showLicensePage(
+                        context: context,
+                        applicationName: 'License Page Demo',
+                        applicationVersion: '1.0.0',
+                        applicationIcon: const Icon(Icons.app_registration, size: 40),
+                        applicationLegalese: '© 2024 My Company. All rights reserved.',
+                      );
+                    },
+                  ),
                     ],
                   ),
                 )
