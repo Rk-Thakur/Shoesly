@@ -18,6 +18,14 @@ scripts:
       packageFilters:
         fileExists: bin/svg.dart  
 
+    upgrade:
+      description: Pub Upgrade
+      exec: flutter pub upgrade
+
+    outdated:
+      description: Pub Outdated
+      exec: flutter pub outdated
+
     clean:
       description: Clean all packages
       exec: flutter clean  
