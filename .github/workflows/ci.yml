@@ -34,7 +34,7 @@ jobs:
       - name: Build APK
         if: matrix.project == 'packages/shoesly'
         working-directory: ${{ matrix.project }}
-        run: flutter build apk --release --flavor production
+        run: flutter build apk --release --flavor production 
 
       - name: Push to Release
         if: matrix.project == 'packages/shoesly'
